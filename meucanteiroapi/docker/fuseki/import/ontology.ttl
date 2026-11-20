@@ -1,0 +1,610 @@
+@prefix conto: <http://www.semanticweb.org/lvian/ontologies/2024/4/conto#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix qudt: <https://qudt.org/3.1.0/schema/qudt#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix to: <http://purl.obolibrary.org/obo/TO_> .
+@prefix po: <http://purl.obolibrary.org/obo/PO_> .
+@prefix agro: <http://purl.obolibrary.org/obo/AGRO_> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+
+<http://www.semanticweb.org/lvian/ontologies/2024/4/conto> rdf:type owl:Ontology ;
+	owl:imports <http://www.w3.org/2000/01/rdf-schema#> .
+
+################################################################
+# Classes
+################################################################
+
+conto:Cultivar a rdfs:Class ;
+	rdfs:label "Cultivar" ;
+	skos:altLabel "Variedade Cultivada"@pt-br, "Cultivated Variety"@en;
+	dc:description 
+		"Cultivar é um tipo de planta que foi escolhido e desenvolvido para ter algumas características específicas. Por exemplo, existem diferentes tipos de tomate. Alguns produzem frutos maiores, outros menores. Alguns são mais doces, outros são mais resistentes a doenças. Cada um desses tipos pode ser uma cultivar."@pt-br ,
+		"The word cultivar comes from the English language and is a combination of the terms “cultivated” and “variety”. A plant variety is a subcategory of a plant species that has distinct characteristics. These characteristics can be color, size, shape, disease resistance, or flavor. In simple terms, cultivars are cultivated varieties of plants that are obtained through genetic improvement techniques that include: hybridization, selective breeding, genetic engineering, or through natural mutations, called sports."@en ;
+	rdfs:subClassOf 
+		gufo:Kind .
+
+conto:PlantSpecies a rdfs:Class ;
+	rdfs:label "Plant Species"@en, "Espécie de Planta"@pt-br ;
+	rdfs:comment 
+		"Espécie é um grupo de seres vivos que podem reproduzir-se entre si e que são isolados reprodutivamente de outros grupos. É a unidade básica do sistema taxonômico de seres vivos."@pt-br ,
+		"A species is a group of living beings that can reproduce among themselves and that are reproductively isolated from other groups. It is the basic unit of the taxonomic system of living beings."@en ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:CultivarPreference a rdfs:Class ;
+	rdfs:label "Cultivar Preference"@en, "Preferência de Cultivar"@pt-br ;
+	dc:description 
+		"A cultivar's preference for some specific factor (temperature, light, water, nutrients, soil, etc.)."@en, 
+		"Uma preferência do cultivar com relação a algum fator específico (temperatura, luminosidade, água, nutrientes, solo, etc.)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Category .
+		
+conto:TemperaturePreference a rdfs:Class ;
+	rdfs:label "Temperature Preference"@en, "Preferência de Temperatura"@pt-br ;
+	dc:description 
+		"A cultivar's temperature preference."@en, 
+		"Mostra em qual faixa de temperatura a planta cresce melhor."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+		
+conto:LightPreference a rdfs:Class ;
+	rdfs:label "Light Preference"@en, "Preferência de Luminosidade"@pt-br ;
+	dc:description 
+		"A cultivar's preference for light."@en, 
+		"Mostra quanto de luz do sol a planta precisa para crescer bem."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+		
+conto:WaterPreference a rdfs:Class ;
+	rdfs:label "Water Preference"@en, "Preferência de Água"@pt-br ;
+	dc:description 
+		"A cultivar's preference for water quantity."@en, 
+		"Mostra se a planta precisa de pouca, média ou muita água."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+		
+conto:SoilDrainagePreference a rdfs:Class ;
+	rdfs:label "Soil Drainage Preference"@en, "Preferência de Drenagem de Solo"@pt-br ;
+	dc:description 
+		"A cultivar's preference for soil drainage."@en, 
+		"Mostra se a planta prefere um solo que deixe a água escoar rapidamente ou que retenha mais água."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+		
+conto:SoilpHPreference a rdfs:Class ;
+	rdfs:label "Soil pH Preference"@en, "Preferência de pH do Solo"@pt-br ;
+	dc:description 
+		"A cultivar's preference for soil pH (acidic, neutral, alkaline)."@en, 
+		"Mostra se a planta prefere um solo ácido, neutro ou alcalino. Cada planta prefere uma faixa de pH para crescer bem. O pH é ácido quando está abaixo de 6. O pH é neutro entre 6 e 7. O pH é alcalino quando acima de 7."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind, conto:CultivarPreference .
+
+conto:Management a rdfs:Class ;
+	rdfs:label "Management"@en, "Manejo"@pt-br ;
+	dc:description 
+		"Management is the set of technical practices and decisions applied throughout the cultivation cycle with the goal of promoting healthy plant development, optimizing production, and conserving natural resources. These practices include soil preparation, fertilization, irrigation, pest and disease control, plant training, among others."@en, 
+		"Manejo é o conjunto de práticas técnicas e decisões aplicadas ao longo do ciclo de cultivo com o objetivo de promover o desenvolvimento saudável das plantas, otimizar a produção e conservar os recursos naturais. Essas práticas incluem o preparo do solo, adubação, irrigação, controle de pragas e doenças, condução das plantas, entre outras."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind ,
+		[
+			rdf:type owl:Restriction ;
+			owl:onProperty conto:appliedTo ;
+			owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+			owl:onClass po:0009012
+		] ,
+		[
+			rdf:type owl:Restriction ;
+			owl:onProperty conto:hasManagementPractice ;
+			owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+			owl:onClass agro:00002071
+		] .
+		
+conto:Condition a rdfs:Class ;
+	rdfs:label "Condition"@en, "Condição"@pt-br ;
+	dc:description 
+		"Condition is the set of physical, chemical, and biological characteristics that describe the current state at a given location and time, directly influencing plant development and the effectiveness of agricultural management practices."@en, 
+		"Condição é o conjunto de características físicas, químicas e biológicas que descrevem o estado atual em um determinado local e momento, influenciando diretamente o desenvolvimento das plantas e a eficiência das práticas de manejo agrícola."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:PlantingManagement a rdfs:Class ;
+	rdfs:label "Planting Management"@en, "Manejo de Plantio"@pt-br ;
+	dc:description 
+		"Planting is the act of placing seeds, seedlings, or vegetative propagules into the soil or a substrate with the goal of initiating a plant’s cultivation cycle. It marks the beginning of the field phase or production in a controlled environment (nursery, greenhouse, seedbed) and is influenced by factors such as timing, soil preparation, planting method, spacing, and propagation technique."@en, 
+		"Plantio é o ato de colocar sementes, mudas ou propágulos vegetativos no solo ou em substrato, com o objetivo de iniciar o ciclo de cultivo de uma planta. Ele marca o início da fase de campo ou da produção em ambiente controlado (viveiro, estufa, canteiro), sendo influenciado por fatores como época, preparo do solo, forma de plantio, espaçamento e método de propagação."@pt-br ;
+	rdfs:subClassOf
+		gufo:SubKind , conto:Management .	
+
+conto:PlantingSeason a rdfs:Class ;
+	rdfs:label "Planting Season"@en, "Época de Plantio"@pt-br ;
+	dc:description 
+		"Season when a cultivar can be planted in a specific geographic area."@en, 
+		"Época em que um cultivar pode ser plantado em determinada área geográfica."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind .
+		
+conto:PlantingMethod a rdfs:Class ;
+	rdfs:label "Planting Method"@en, "Forma de Plantio"@pt-br ;
+	dc:description 
+		"Planting method refers to the way a plant is introduced into the soil at the time of planting, and it can vary depending on the crop type, the plant’s development stage, and the production system. The main methods include direct seeding and transplanting of seedlings."@en, 
+		"Forma de plantio refere-se ao modo como a planta é introduzida no solo no momento do plantio, e pode variar conforme o tipo de cultura, fase de desenvolvimento da planta e sistema produtivo. As principais formas incluem semeadura direta e transplante de mudas."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Category .
+		
+conto:DirectSeeding a rdfs:Class ;
+	rdfs:label "Direct Seeding"@en, "Semeadura Direta"@pt-br ;
+	dc:description 
+		"Direct seeding is the planting method in which seeds are placed directly into the final soil where the plant’s entire life cycle, from germination to harvest, will occur. It is common in crops such as corn, beans, carrots, radishes, and lettuce in simplified systems, and it requires proper soil preparation, depth control, and ideal moisture conditions for germination."@en, 
+		"Semeadura direta é a forma de plantio em que as sementes são depositadas diretamente no solo definitivo, onde ocorrerá todo o ciclo de vida da planta, desde a germinação até a colheita. É comum em culturas como milho, feijão, cenoura, rabanete e alface em sistemas simplificados, e exige preparo adequado do solo, controle de profundidade e umidade ideal para germinação."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind, conto:PlantingMethod .	
+		
+conto:SeedlingTransplanting a rdfs:Class ;
+	rdfs:label "Seedling Transplanting"@en, "Transplante de Muda"@pt-br ;
+	dc:description 
+		"Seedling transplanting is the planting method in which plants are initially grown in a protected environment (such as nurseries or trays) and later transferred to their final cultivation site. It allows for better control of the early stages of development and is widely used for vegetables such as tomatoes, peppers, kale, and lettuce, as well as for fruit trees during orchard establishment."@en, 
+		"Transplante de mudas é a forma de plantio em que as plantas são inicialmente cultivadas em local protegido (como viveiros ou bandejas) e, posteriormente, transferidas para o local definitivo de cultivo. Permite melhor controle das fases iniciais de desenvolvimento e é amplamente utilizado em hortaliças como tomate, pimentão, couve, alface, e em frutíferas durante a formação dos pomares."@pt-br ;
+	rdfs:subClassOf 
+		gufo:Kind, conto:PlantingMethod .	
+		
+conto:PropagationMethod a rdfs:Class ;
+	rdfs:label "Propagation Method"@en, "Forma de Propagação"@pt-br ;
+	dc:description 
+		"Propagation method is the biological or technical strategy used to multiply plants, which can be sexual (by seeds) or asexual (vegetative)."@en, 
+		"Forma de propagação é a estratégia biológica ou técnica utilizada para multiplicar plantas, podendo ser sexual (por sementes) ou asexual (vegetativa)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Mode .
+
+conto:Harvest a rdfs:Class ;
+	rdfs:label "Harvest"@en, "Colheita"@pt-br ;
+	dc:description 
+		"Harvesting is the set of operations performed to remove agricultural products from the plant or field at the ideal physiological stage of maturation, with the goal of preserving the quality, health, and commercial value of the production."@en, 
+		"Colheita é o conjunto de operações realizadas para remover os produtos agrícolas da planta ou do campo, no momento fisiológico ideal de maturação, com o objetivo de preservar a qualidade, sanidade e valor comercial da produção."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:AnnualCropHarvest a rdfs:Class ;
+	rdfs:label "Annual Crop Harvest"@en, "Colheita de Cultivo Anual"@pt-br ;
+	dc:description 
+		"Harvesting specifities of annual crops."@en, 
+		"Especificidades da colheita de cultivos anuais."@pt-br ;
+	rdfs:subClassOf
+		gufo:SubKind , conto:Harvest .
+
+
+conto:Product a rdfs:Class ;
+	rdfs:label "Product"@en, "Produto"@pt-br ;
+	dc:description 
+		"Something produced by a cultivar that is consumed by humans."@en, 
+		"Algo que é produzido por um cultivar que é consumido por seres humanos."@pt-br ;
+	rdfs:subClassOf
+		gufo:Role .
+
+conto:HarvestCriterion a rdfs:Class ;
+	rdfs:label "Harvest Criterion"@en, "Critério de Colheita"@pt-br ;
+	dc:description 
+		"Harvesting criterion is the set of observable or measurable characteristics used to determine the ideal time for harvesting a plant or part of it, aiming to ensure product quality, reduce losses, and meet the intended purpose (fresh consumption, processing, storage, etc.)."@en, 
+		"Critério de colheita é o conjunto de características observáveis ou mensuráveis utilizadas para determinar o momento ideal para a colheita de uma planta ou parte dela, visando garantir a qualidade do produto, reduzir perdas e atender ao objetivo de uso (consumo in natura, processamento, armazenamento, etc.)."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:FertilizerAlternativeItem a rdfs:Class ;
+	rdfs:label "Fertilizer Alternative Item"@en, "Item de Alternativa de Adubação"@pt-br ;
+	dc:description 
+		"Um item de adubação para uma alternativa de ação de manejo."@pt-br ;
+	rdfs:subClassOf
+		gufo:Kind .
+		
+conto:ReferenceStage a rdfs:Class ;
+	rdfs:label "Reference Stage"@en, "Estágio de Referência"@pt-br ;
+	dc:description "Evento ou fase fenológica usada como âncora temporal para práticas de manejo."@pt-br ;
+	rdfs:subClassOf gufo:Kind .
+
+conto:ApplicationWindow a rdfs:Class ;
+	rdfs:label "Application Window"@en, "Janela de Aplicação"@pt-br ;
+	dc:description "Momento ou período de aplicação de um manejo, definido relativamente a um estágio de referência."@pt-br ;
+	rdfs:subClassOf gufo:Kind .
+
+
+################################################################
+# Object properties
+################################################################
+
+conto:hasSpecies a owl:ObjectProperty ;
+	rdfs:label "has species"@en, "tem espécie"@pt-br ;
+	dc:description 
+		"Espécie do cultivar."@pt-br,
+		"Species related to the cultivar"@en ;
+	rdfs:domain conto:Cultivar;
+	rdfs:range conto:PlantSpecies ;
+	owl:inverseOf conto:hasCultivar . 
+		
+conto:hasTrait a owl:ObjectProperty ;
+	rdfs:label "has trait"@en, "tem característica"@pt-br ;
+	dc:description 
+		"Características morfológicas ou funcionais do cultivar."@pt-br,
+		"Morphological or functional traits of the cultivar."@en ;
+	rdfs:domain conto:Cultivar, conto:Product;
+	rdfs:range to:0000387 .
+	
+conto:hasPreference a owl:ObjectProperty ;
+	rdfs:label "has preference"@en, "tem preferência"@pt-br ;
+	dc:description 
+		"Preferências do cultivar quanto a fatores ambientais (luminosidade, temperatura, disponibilidade de nutrientes, água, etc.)"@pt-br,
+		"Cultivar preferences related to environment factors (luminosity, temperature, water, etc.)"@en ;
+	rdfs:domain conto:Cultivar;
+	rdfs:range conto:CultivarPreference .
+
+conto:hasManagement a owl:ObjectProperty ;
+	rdfs:label "has management"@en, "tem manejo"@pt-br ;
+	dc:description 
+		"Práticas de manejo que podem/devem ser aplicadas ao cultivar em determinadas etapas de desenvolvimento."@pt-br,
+		"Management practices that can/should be applied to the cultivar at certain development stages."@en ;
+	rdfs:domain conto:Cultivar;
+	rdfs:range conto:Management .
+	
+conto:providesProduct a owl:ObjectProperty ;
+	rdfs:label "provides product"@en, "fornece produto"@pt-br ;
+	dc:description 
+		"Um produto obtido a partir do cultivar (fruto, folha, sementes, raíz, etc.)."@pt-br,
+		"A product obtained from the cultivar (fruit, leaf, seeds, root, etc.)."@en ;
+	rdfs:domain conto:Cultivar;
+	rdfs:range conto:Product .
+	
+conto:hasCultivar a owl:ObjectProperty ;
+	rdfs:label "has cultivar"@en, "tem cultivar"@pt-br ;
+	dc:description 
+		"Um cultivar da espécie."@pt-br,
+		"A species cultivar."@en ;
+	rdfs:domain conto:PlantSpecies;
+	rdfs:range conto:Cultivar ;
+	owl:inverseOf conto:hasSpecies .
+	
+conto:appliedTo a owl:ObjectProperty ;
+	rdfs:label "applied to"@en, "aplicado à"@pt-br ;
+	dc:description 
+		"Etapas de desenvolvimento do cultivar às quais pode/deve ser aplicada esta prática de manejo."@pt-br,
+		"Development stages of the cultivar to which this management practice can/should be applied."@en ;
+	rdfs:domain conto:Management ;
+	rdfs:range po:0009012 .
+	
+conto:hasManagementPractice a owl:ObjectProperty ;
+	rdfs:label "has management practice"@en, "tem ação de manejo"@pt-br ;
+	dc:description 
+		"Ações a serem executadas em uma prática de manejo."@pt-br,
+		"Practices to be developed in a management definition."@en ;
+	rdfs:domain conto:Management ;
+	rdfs:range agro:00002071 .
+	
+conto:hasCondition a owl:ObjectProperty ;
+	rdfs:label "has condition"@en, "tem condição"@pt-br ;
+	dc:description 
+		"Condição é o conjunto de características físicas, químicas e biológicas que descrevem o estado atual em um determinado local e momento, influenciando diretamente o desenvolvimento das plantas e a eficiência das práticas de manejo agrícola."@pt-br,
+		"Condition is the set of physical, chemical, and biological characteristics that describe the current state at a given location and time, directly influencing plant development and the effectiveness of agricultural management practices."@en ;
+	rdfs:domain conto:Management ;
+	rdfs:range conto:Condition .
+	
+conto:rowSpacing a owl:ObjectProperty ;
+	rdfs:label "row spacing"@en, "Espaçamento entre linhas"@pt-br ;
+	dc:description 
+		"Espaço entre linhas de plantas."@pt-br,
+		"Space between plant rows."@en ;
+	rdfs:domain conto:PlantingManagement ;
+	rdfs:range qudt:Quantity .
+
+conto:plantSpacing a owl:ObjectProperty ;
+	rdfs:label "plant spacing"@en, "Espaçamento entre plantas"@pt-br ;
+	dc:description 
+		"Espaço entre plantas em uma mesma linha."@pt-br,
+		"Space between plants in a row."@en ;
+	rdfs:domain conto:PlantingManagement ;
+	rdfs:range qudt:Quantity .
+
+conto:hasPlantingSeason a owl:ObjectProperty ;
+	rdfs:label "has planting season"@en, "tem época de plantio"@pt-br ;
+	dc:description 
+		"Épocas de plantio em uma região geográfica específica."@pt-br,
+		"Planting season in a specific geographic area."@en ;
+	rdfs:domain conto:PlantingManagement;
+	rdfs:range conto:PlantingSeason .
+	
+conto:hasPlantingMethod a owl:ObjectProperty ;
+	rdfs:label "has planting method"@en, "tem forma de plantio"@pt-br ;
+	dc:description 
+		"Formas de se plantar o cultivar."@pt-br,
+		"Planting methods related to a cultivar."@en ;
+	rdfs:domain conto:PlantingManagement;
+	rdfs:range conto:PlantingMethod .
+	
+conto:depth a owl:ObjectProperty ;
+	rdfs:label "depth"@en, "profundidade"@pt-br ;
+	dc:description 
+		"Profundidade da cova/sulco."@pt-br,
+		"Hole/furrow depth"@en ;
+	rdfs:domain conto:DirectSeeding ;
+	rdfs:range qudt:Quantity .
+	
+conto:width a owl:ObjectProperty ;
+	rdfs:label "width"@en, "largura"@pt-br ;
+	dc:description 
+		"Largura ou diâmetro da cova/sulco."@pt-br,
+		"Hole/furrow width or diameter"@en ;
+	rdfs:domain conto:DirectSeeding ;
+	rdfs:range qudt:Quantity .
+	
+conto:timeToGerminate a owl:ObjectProperty ;
+	rdfs:label "time to germinate"@en, "tempo para germinar"@pt-br ;
+	dc:description 
+		"Tempo que a semente leva para germinar."@pt-br,
+		"Time to seed germinate."@en ;
+	rdfs:domain conto:DirectSeeding ;
+	rdfs:range qudt:Quantity .
+
+conto:hasPropagationMethod a owl:ObjectProperty ;
+	rdfs:label "has propagation method"@en, "tem forma de propagação"@pt-br ;
+	dc:description 
+		"Forma como a muda foi produzida."@pt-br,
+		"How the seedling was produced."@en ;
+	rdfs:domain conto:SeedlingTransplanting ;
+	rdfs:range conto:PropagationMethod .
+
+conto:timeToHarvest_Summer a owl:ObjectProperty ;
+	rdfs:label "time to harvest in the Summer"@en, "tempo para colheita no verão"@pt-br ;
+	dc:description 
+		"Tempo para colheita do produto no verão, a partir do plantio."@pt-br,
+		"Time to product harvesting since planting, in the Summer."@en ;
+	rdfs:domain conto:AnnualCropHarvest ;
+	rdfs:range qudt:Quantity .
+
+conto:timeToHarvest_Winter a owl:ObjectProperty ;
+	rdfs:label "time to harvest in the Winter"@en, "tempo para colheita no inverno"@pt-br ;
+	dc:description 
+		"Tempo para colheita do produto no inverno, a partir do plantio."@pt-br,
+		"Time to product harvesting since planting, in the Winter."@en ;
+	rdfs:domain conto:AnnualCropHarvest ;
+	rdfs:range qudt:Quantity .
+
+conto:hasCriterion a owl:ObjectProperty ;
+	rdfs:label "has criterion"@en, "tem critério"@pt-br ;
+	dc:description 
+		"Critérios usados para se saber quando colher o produto."@pt-br,
+		"Criteria used to determine when to harvest the product."@en ;
+	rdfs:domain conto:Harvest ;
+	rdfs:range conto:HarvestCriterion .
+
+conto:hasHarvest a owl:ObjectProperty ;
+	rdfs:label "has harvest"@en, "tem colheita"@pt-br ;
+	dc:description 
+		"Formas de colher o produto."@pt-br,
+		"Methods of harvesting the product."@en ;
+	rdfs:domain conto:Product ;
+	rdfs:range conto:Harvest .
+	
+conto:hasAlternative a owl:ObjectProperty ;
+	rdfs:label "has alternative"@en, "tem alternativa"@pt-br ;
+	dc:description 
+		"Alternativa a uma ação de manejo."@pt-br,
+		"An alternative to a management practice."@en ;
+	rdfs:domain agro:00002071 ;
+	rdfs:range agro:00002071 .
+	
+conto:hasAlternativeItem a owl:ObjectProperty ;
+	rdfs:label "has alternative item"@en, "tem item de alternativa"@pt-br ;
+	dc:description 
+		"Item de uma alternativa a uma ação de manejo."@pt-br,
+		"An alternative item to a management practice."@en ;
+	rdfs:domain agro:00002071 ;
+	rdfs:range conto:FertilizerAlternativeItem .
+	
+conto:hasApplicationWindow a owl:ObjectProperty ;
+	rdfs:label "has application window"@en, "tem janela de aplicação"@pt-br ;
+	rdfs:domain conto:Management ; 
+	rdfs:range conto:ApplicationWindow .
+
+conto:relativeToStage a owl:ObjectProperty ;
+	rdfs:label "relative to stage"@en, "relativo ao estágio"@pt-br ;
+	rdfs:domain conto:ApplicationWindow ; 
+	rdfs:range conto:ReferenceStage .
+
+conto:startOffset a owl:ObjectProperty ;   # ausente = 0 (no estágio)
+	rdfs:domain conto:ApplicationWindow ; 
+	rdfs:range time:Duration .
+
+conto:endOffset a owl:ObjectProperty ;     # ausente = igual ao startOffset
+	rdfs:domain conto:ApplicationWindow ; 
+	rdfs:range time:Duration .
+	
+conto:appliesThroughoutCycle a owl:DatatypeProperty ;
+	rdfs:domain conto:ApplicationWindow ; 
+	rdfs:range xsd:boolean .
+
+conto:stageOrder a owl:DatatypeProperty ;
+	rdfs:domain conto:ReferenceStage ; 
+	rdfs:range xsd:integer .
+	
+################################################################
+# Individuals
+################################################################
+
+# --------------------------
+# Light Preference
+# --------------------------
+
+conto:LP_FullSun a conto:LightPreference ;
+	conto:name "Full Sun"@en, "Sol Pleno"@pt-br ;
+	conto:description 
+		"Plants that need at least 6 hours of direct sunlight per day."@en, 
+		"Plantas que precisam de pelo menos 6 horas de luz solar direta por dia."@pt-br .
+		
+conto:LP_PartialShade a conto:LightPreference ;
+	conto:name "Partial Shade"@en, "Meia-Sombra"@pt-br ;
+	conto:description 
+		"Plants that need 4 to 6 hours of direct sunlight per day."@en, 
+		"Plantas que precisam de 4 a 6 horas de luz solar direta por dia."@pt-br .
+		
+conto:LP_Shade a conto:LightPreference ;
+	conto:name "Shade"@en, "Sombra"@pt-br ;
+	conto:description 
+		"Plants that need 2 to 4 hours of direct sunlight per day or diffused natural light all day long"@en, 
+		"Plantas que precisam de 2 a 4 horas de luz solar direta por dia ou luz natural difusa o dia todo"@pt-br .
+		
+# --------------------------
+# Water Preference
+# --------------------------
+
+conto:WP_High a conto:WaterPreference ;
+	conto:name "High"@en, "Alta"@pt-br ;
+	conto:description 
+		"These plants need constantly moist soil and do not tolerate prolonged periods of drought. They are generally plants from tropical or marshy climates, such as lettuce, spinach, chicory, rice and some ornamental plants, such as ferns."@en, 
+		"Essas plantas precisam de solo constantemente úmido e não toleram períodos prolongados de seca. Geralmente, são plantas de climas tropicais ou pantanosos, como alface, espinafre, almeirão, arroz e algumas plantas ornamentais, como as samambaias."@pt-br .
+		
+conto:WP_Moderate a conto:WaterPreference ;
+	conto:name "Moderate"@en, "Moderada"@pt-br ;
+	conto:description 
+		"These are the most common plants and require regular watering, but can withstand short periods of drought. Vegetables such as tomatoes, cucumbers, zucchini and carrots fall into this category, requiring moist but not waterlogged soil."@en, 
+		"São as mais comuns e requerem irrigação regular, mas podem suportar períodos curtos de seca. Hortaliças como tomate, pepino, abobrinha e cenoura se encaixam nessa categoria, necessitando de solo úmido, mas não encharcado."@pt-br .
+		
+conto:WP_Low a conto:WaterPreference ;
+	conto:name "Low"@en, "Baixa"@pt-br ;
+	conto:description 
+		"These plants are adapted to dry environments and can withstand periods of water shortages well. They tend to have adaptations such as thick or succulent leaves. Examples include lavender, rosemary, cacti, and succulents."@en, 
+		"Estas plantas são adaptadas a ambientes secos e podem resistir bem a períodos de escassez de água. Elas tendem a ter adaptações como folhas grossas ou suculentas. Exemplos incluem lavanda, alecrim, cactos e suculentas."@pt-br .
+		
+# --------------------------
+# Soil Drainage Preference
+# --------------------------
+
+conto:SDP_WellDrainedSoil a conto:SoilDrainagePreference ;
+	conto:name "Well Drained Soil"@en, "Solo Bem Drenado"@pt-br ;
+	conto:description 
+		"Ideal for plants that do not tolerate waterlogging, such as rosemary and lavender. Sandy soils tend to have good drainage."@en, 
+		"Ideal para plantas que não toleram encharcamento, como alecrim e lavanda. Solos arenosos tendem a ter boa drenagem."@pt-br .
+
+conto:SDP_SoilWithModerateDrainage a conto:SoilDrainagePreference ;
+	conto:name "Soil With Moderate Drainage"@en, "Solo com Drenagem Moderada"@pt-br ;
+	conto:description 
+		"With the ability to retain water without becoming waterlogged, ideal for a wide variety of plants."@en, 
+		"Com capacidade de reter água sem encharcar, ideal para uma ampla variedade de plantas."@pt-br .
+		
+conto:SDP_SoilWithPoorDrainage a conto:SoilDrainagePreference ;
+	conto:name "Soil With Poor Drainage"@en, "Solo com Drenagem Lenta"@pt-br ;
+	conto:description 
+		"Clay and compacted soils can have slow drainage. Plants such as rice and papyrus are well-suited to these soils, but most garden plants and vegetables do not thrive in this type of soil."@en, 
+		"Solos argilosos e compactados podem ter drenagem lenta. Plantas como arroz ou papiro se adaptam a esses solos, mas a maioria das plantas de jardim e hortaliças não prospera nesse tipo de solo."@pt-br .
+		
+# --------------------------
+# Propagation Method
+# --------------------------
+
+conto:PM_BySeeds a conto:PropagationMethod ;
+	conto:name "By Seeds"@en, "Por Sementes"@pt-br ;
+	conto:description 
+		"Seedling originated from seed planting."@en, 
+		"Muda originada de plantio de sementes."@pt-br .
+		
+conto:PM_Cutting a conto:PropagationMethod ;
+	conto:name "Cutting"@en, "Estaquia"@pt-br ;
+	conto:description 
+		"Use of stem, root, or leaf parts for rooting."@en, 
+		"Uso de partes do caule, raiz ou folha para enraizamento."@pt-br .
+		
+conto:PM_Grafting a conto:PropagationMethod ;
+	conto:name "Grafting"@en, "Enxertia"@pt-br ;
+	conto:description 
+		"Union between a part of one plant (scion) and another (rootstock)."@en, 
+		"União entre uma parte de uma planta (cavaleiro) e outra (porta-enxerto)."@pt-br .
+		
+conto:PM_AirLayering a conto:PropagationMethod ;
+	conto:name "Air Layering"@en, "Alporquia"@pt-br ;
+	conto:description 
+		"Induction of roots in a branch still attached to the parent plant."@en, 
+		"Indução de raízes num ramo ainda preso à planta-mãe."@pt-br .
+		
+conto:PM_TipLayering a conto:PropagationMethod ;
+	conto:name "Tip Layering"@en, "Mergulhia"@pt-br ;
+	conto:description 
+		"Part of the plant branch is buried to form roots."@en, 
+		"Enterra-se parte do ramo da planta para formar raízes."@pt-br .
+		
+conto:PM_ClumpDivision a conto:PropagationMethod ;
+	conto:name "Clump Division"@en, "Divisão de touceiras"@pt-br ;
+	conto:description 
+		"Separation of natural seedlings originated from rhizomes or roots."@en, 
+		"Separação de mudas naturais originadas de rizomas ou raízes."@pt-br .
+		
+conto:PM_BulbsRhizomesTubers a conto:PropagationMethod ;
+	conto:name "Bulbs, rhizomes, tubers"@en, "Bulbos, rizomas, tubérculos"@pt-br ;
+	conto:description 
+		"Use of modified storage structures."@en, 
+		"Uso de estruturas de reserva modificadas."@pt-br .
+
+# --------------------------
+# Traits
+# --------------------------
+
+conto:TRAIT_PANC a to:0000387 ; 
+	rdfs:label "PANC"@pt-br ;
+	dc:description
+		"As PANC (Plantas Alimentícias Não Convencionais) referem-se a vegetais que, apesar de comestíveis e muitas vezes nativos, não fazem parte da dieta convencional da maior parte da população, sendo frequentemente desconhecidos, ignorados ou considerados apenas \"mato\", \"erva daninha\" ou plantas ornamentais. "@pt-br .
+
+#-------------------------------------------
+# Fertilizers
+#-------------------------------------------
+
+conto:FERT_OrganicCompost a envo:00002170 ;
+	rdfs:label "Composto Orgânico"@pt-br.
+
+conto:FERT_PoultryManure a agro:00000080 ;
+	rdfs:label "Esterco de Frango"@pt-br.
+	
+conto:FERT_CattleManure a agro:agro:00000077 ;
+	rdfs:label "Esterco de Gado"@pt-br.
+
+#-------------------------------------------
+# Estágios de referência
+#-------------------------------------------
+conto:RS_Planting  a conto:ReferenceStage ; 
+	rdfs:label "Plantio"@pt-br   ; 
+	conto:stageOrder 10 ;
+	skos:closeMatch agro:00000231 .
+	
+conto:RS_Emergence a conto:ReferenceStage ; 
+	rdfs:label "Emergência"@pt-br ; 
+	conto:stageOrder 20 ;
+	skos:closeMatch po:0007030 .
+	
+conto:RS_Flowering a conto:ReferenceStage ; 
+	rdfs:label "Floração"@pt-br   ; 
+	conto:stageOrder 40 ;
+	skos:closeMatch po:0007616 .
+	
+conto:RS_Harvest   a conto:ReferenceStage ; 
+	rdfs:label "Colheita"@pt-br   ; 
+	conto:stageOrder 60 .
+	
+#-------------------------------------------
+# Durações reutilizáveis
+#-------------------------------------------
+
+conto:DUR_10d a time:Duration ; 
+	time:numericDuration 10 ; 
+	time:unitType time:unitDay .
+	
+conto:DUR_2w  a time:Duration ; 
+	time:numericDuration 2  ; 
+	time:unitType time:unitWeek .
+	
+conto:DUR_3w  a time:Duration ; 
+	time:numericDuration 3  ; 
+	time:unitType time:unitWeek .
+	
+conto:DUR_4w  a time:Duration ; 
+	time:numericDuration 4  ; 
+	time:unitType time:unitWeek .

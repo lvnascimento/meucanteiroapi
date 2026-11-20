@@ -1,0 +1,23 @@
+services:
+  fuseki:
+    build: ./fuseki
+    restart: unless-stopped
+    environment:
+      - FORCE_RELOAD=${FORCE_RELOAD:-false}
+    volumes:
+      - ./fuseki/import:/import:ro
+      - fuseki-data:/data
+    # SEM "ports": não fica acessível fora da rede do Docker
+
+  api:
+    build: ./api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - FUSEKI_URL=http://fuseki:3030/horta
+    depends_on:
+      - fuseki
+
+volumes:
+  fuseki-data:

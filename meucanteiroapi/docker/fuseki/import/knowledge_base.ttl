@@ -1,0 +1,3598 @@
+@prefix conto: <http://www.semanticweb.org/lvian/ontologies/2024/4/conto#> .
+@prefix to: <http://purl.obolibrary.org/obo/TO_> .
+@prefix qudt: <http://purl.org/qudt/schema/qudt/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foodon: <http://purl.obolibrary.org/obo/FOODON_> .
+@prefix greg: <http://www.w3.org/ns/time/gregorian#> .
+@prefix schema: <https://schema.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix agro: <http://purl.obolibrary.org/obo/AGRO_> .
+@prefix ro: <http://purl.obolibrary.org/obo/RO_> .
+@prefix envo: <http://purl.obolibrary.org/obo/ENVO_> .
+
+
+# ========================================
+# Classes Gerais
+# ========================================
+
+conto:RegionalName a rdfs:Class ;
+	rdfs:label "Nome Regional"@pt-br ;
+	dc:description "Nome de um produto, espécie ou cultivar usado em uma determinada região."@pt-br .
+
+conto:p_ProdutoPrincipal a rdfs:Class;
+	rdfs:label "Produto Principal"@pt-br;
+	dc:description "Produto mais conhecido popularmente e consumido da planta."@pt-br;
+	rdfs:subClassOf conto:Product .
+	
+conto:p_ProdutoSecundario a rdfs:Class;
+	rdfs:label "Produto Secundário"@pt-br;
+	dc:description "Produto alimentício não-convencional da planta, obtidos a partir de partes alternativas da planta."@pt-br;
+	rdfs:subClassOf conto:Product .
+
+# ========================================
+# Propriedades Gerais
+# ========================================
+
+conto:hasRegionalName a owl:ObjectProperty ;
+	rdfs:label "has regional name"@en, "tem nome regional"@pt-br ;
+	dc:description 
+		"Nome regional associado a uma instância."@pt-br,
+		"Regional name related to an instance."@en ;
+	rdfs:range conto:RegionalName .
+
+# ========================================
+# Classes para Produtos
+# ========================================
+
+conto:p_AboboraDePescoco a rdfs:Class ;
+	rdfs:label "Abóbora de Pescoço"@pt-br;
+	skos:altLabel "Abóbora Seca"@pt-br;
+	skos:altLabel "Abóbora Menina"@pt-br;
+	schema:image <https://www.sementesfeltrin.com.br/imagens_importadas/135.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03317254 .
+	
+conto:p_AboboraPaulista a rdfs:Class ;
+	rdfs:label "Abóbora Paulista"@pt-br;
+	conto:hasRegionalName conto:nom_AboboraPaulista_CO ;
+	schema:image <https://www.shutterstock.com/image-photo/brazil-known-paulista-abobora-de-600nw-2344957879.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03317254 .
+	
+conto:nom_AboboraPaulista_CO a conto:RegionalName ;
+	rdfs:label "Abóbora Goianinha"@pt-br;
+	dul:hasLocation conto:place_RegiaoCentroOeste .
+	
+conto:p_AboboraManteiga a rdfs:Class ;
+	rdfs:label "Abóbora Manteiga"@pt-br;
+	skos:altLabel "Abóbora Butternut"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2013/05/06/13/32/butternut-squash-109131_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00005354 .
+	
+conto:p_AboboraJaponesa a rdfs:Class ;
+	rdfs:label "Abóbora Japonesa"@pt-br;
+	skos:altLabel "Abóbora Cabotiá"@pt-br;
+	conto:hasRegionalName conto:nom_Jerimum_NE ;
+	schema:image <https://upload.wikimedia.org/wikipedia/commons/0/07/Kabocha.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00005354 .
+	
+conto:nom_Jerimum_NE a conto:RegionalName ;
+	rdfs:label "Jerimum"@pt-br;
+	dul:hasLocation conto:place_RegiaoNordeste .
+
+conto:p_AboboraSergipana a rdfs:Class ;
+	rdfs:label "Abóbora Sergipana"@pt-br;
+	conto:hasRegionalName conto:nom_JerimumDeLeite_NE ;
+	schema:image <https://imagens.isla.com.br/isla/producao/913p06-56534.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003486 .
+	
+conto:nom_JerimumDeLeite_NE a conto:RegionalName ;
+	rdfs:label "Jerimum de Leite"@pt-br;
+	dul:hasLocation conto:place_RegiaoNordeste .
+	
+conto:p_Abobrinha a rdfs:Class ;
+	rdfs:label "Abobrinha"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2016/09/01/20/07/zucchini-1637435_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03310943 .
+	
+conto:p_AgriaoDaTerra a rdfs:Class ;
+	rdfs:label "Agrião da Terra"@pt-br;
+	skos:altLabel "Agrião dos jardins"@pt-br, "Agrião de Santa Bárbara"@pt-br, "Agrião de horta"@pt-br ;
+	schema:image <https://www.jardineiro.net/wp-content/uploads/2011/05/barbarea_verna.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003524 .
+	
+conto:p_AlfaceAmericana a rdfs:Class ;
+	rdfs:label "Alface Americana"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2018/06/29/07/26/salad-3505392_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003423 .
+	
+conto:p_AlfaceCrespa a rdfs:Class ;
+	rdfs:label "Alface Crespa"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2021/02/06/10/23/lettuce-5987715_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003423 .
+	
+conto:p_AlfaceLisa a rdfs:Class ;
+	rdfs:label "Alface Lisa"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2015/09/14/19/53/nature-940032_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003423 .
+
+conto:p_Berinjela a rdfs:Class ;
+	rdfs:label "Berinjela"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2017/09/17/21/38/ripe-eggplant-2759947_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003618 .
+
+conto:p_Beterraba a rdfs:Class ;
+	rdfs:label "Beterraba"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2015/03/24/08/52/beetroot-687251_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03317254 .
+	
+conto:p_Brocolis a rdfs:Class ;
+	rdfs:label "Brócolis"@pt-br;
+	skos:altLabel "Brócoli"@pt-br, "Brócolos"@pt-br, "Couve-brócolos"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2014/10/19/21/50/broccoli-494754_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003405 .
+	
+conto:p_Cenoura a rdfs:Class ;
+	rdfs:label "Cenoura"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2016/07/29/12/50/vegetable-1553195_640.jpg>; 
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003408 .
+	
+conto:p_Coentro a rdfs:Class ;
+	rdfs:label "Coentro"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2013/06/01/03/36/real-coriander-115373_640.jpg>; 
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03310370 .
+	
+conto:p_Couve a rdfs:Class ;
+	rdfs:label "Couve"@pt-br;
+	skos:altLabel "Couve-manteiga"@pt-br, "Couve de folhas"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2017/04/04/17/58/vegetables-2202487_640.jpg>; 
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03540489 .
+
+conto:p_Ervilha a rdfs:Class ;
+	rdfs:label "Ervilha"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2021/02/10/21/35/pea-6003632_640.jpg>; 
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03301300 .
+	
+conto:p_ErvilhaTorta a rdfs:Class ;
+	rdfs:label "Ervilha Torta"@pt-br;
+	schema:image <https://imagens.isla.com.br/isla/producao/134p06-50915.jpg>; 
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03301300 .
+	
+conto:p_FlorDeAbobora a rdfs:Class ;
+	rdfs:label "Flor de Abóbora"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2018/12/18/11/09/calabacera-3882137_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 .
+	
+conto:p_FlorDeCenoura a rdfs:Class ;
+	rdfs:label "Flor de Cenoura"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2016/03/19/14/19/flower-1266763_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 .
+	
+conto:p_FlorDeCoentro a rdfs:Class ;
+	rdfs:label "Flor de Coentro"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2020/01/23/21/08/cilantro-flower-4788752_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 .	
+
+conto:p_FlorDeErvilha a rdfs:Class ;
+	rdfs:label "Flor de Ervilha"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2020/05/24/19/42/pea-5215863_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 .
+
+conto:p_FlorDeMaxixe a rdfs:Class ;
+	rdfs:label "Flor de Maxixe"@pt-br;
+	schema:image <https://www.picturethisai.com/image-handle/website_cmsname/image/1080/153790426585759748.jpeg?x-oss-process=image/format,webp&v=1.0>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 . 
+	
+conto:p_FlorDePepino a rdfs:Class ;
+	rdfs:label "Flor de Pepino"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2015/05/15/13/29/vegetable-garden-768342_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 .
+	
+conto:p_FlorDeQuiabo a rdfs:Class ;
+	rdfs:label "Flor de Quiabo"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2019/11/21/08/53/flower-4642095_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03540534 .
+
+conto:p_FolhaBeterraba a rdfs:Class ;
+	rdfs:label "Folha de Beterraba"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2017/06/23/16/14/drip-2435136_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:00003633 .
+	
+conto:p_FolhaBrocolis a rdfs:Class ;
+	rdfs:label "Folha de Brócolis"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2021/04/22/17/28/broccoli-6199627_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:03000045 .
+	
+conto:p_FolhaRabanete a rdfs:Class ;
+	rdfs:label "Folha de Rabanete"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2015/02/10/10/50/radishes-630868_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoSecundario;
+	rdfs:subClassOf foodon:00003646 .
+
+conto:p_Maxixe a rdfs:Class ;
+	rdfs:label "Maxixe"@pt-br;
+	schema:image <https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Kluse_-_Cucumis_anguria_-_Maxixe-Gurke_08_ies.jpg/960px-Kluse_-_Cucumis_anguria_-_Maxixe-Gurke_08_ies.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal .
+
+conto:p_Melancia a rdfs:Class ;
+	rdfs:label "Melancia"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2014/11/30/07/16/watermelon-551235_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003673 .
+	
+conto:p_MelaoGaucho a rdfs:Class ;
+	rdfs:label "Melão Gaúcho"@pt-br;
+	schema:image <https://cdn.leroymerlin.com.br/products/sementes_de_melao_caipira__gaucho__topseed_1571423035_05c1_600x600.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003597 .
+	
+conto:p_MilhoDoce a rdfs:Class ;
+	rdfs:label "Milho Doce"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2020/05/21/06/58/corn-5199393_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003428 .
+	
+conto:p_Mogango a rdfs:Class ;
+	rdfs:label "Mogango"@pt-br;
+	skos:altLabel "Moganga"@pt-br;
+	conto:hasRegionalName conto:nom_Jerimum_NE ;
+	schema:image <https://plantseed.com.br/wp-content/uploads/2021/06/Abobora-Mogango.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003486 .
+	
+conto:p_Moranga a rdfs:Class ;
+	rdfs:label "Abóbora Moranga"@pt-br;
+	skos:altLabel "Moranga"@pt-br;
+	conto:hasRegionalName conto:nom_Jerimum_NE ;
+	schema:image <https://cdn.pixabay.com/photo/2014/09/01/07/07/pumpkins-432607_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003486 .
+
+conto:p_NaboJapones a rdfs:Class ;
+	rdfs:label "Nabo Japonês"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2017/11/09/18/52/white-radish-2934281_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003666 .
+	
+conto:p_PepinoJapones a rdfs:Class ;
+	rdfs:label "Pepino Japonês"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2012/02/29/11/58/cucumber-18742_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003415 .
+	
+conto:p_PimentaBiquinho a rdfs:Class ;
+	rdfs:label "Pimenta Biquinho"@pt-br;
+	schema:image <https://www.embrapa.br/bme_images/thumb/185520040thumb.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003415 .
+	
+conto:p_Quiabo a rdfs:Class ;
+	rdfs:label "Quiabo"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2020/06/21/05/20/vegetable-5323257_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003681 .
+	
+conto:p_Rabanete a rdfs:Class ;
+	rdfs:label "Rabanete"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2016/04/18/18/08/radishes-1337056_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003431 .
+	
+conto:p_Repolho a rdfs:Class ;
+	rdfs:label "Repolho"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2016/11/22/21/44/cabbage-1850722_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00003406 .
+	
+conto:p_Rucula a rdfs:Class ;
+	rdfs:label "Rúcula"@pt-br;
+	skos:altLabel "Pinchão"@pt-br;
+	schema:image <https://s3.static.brasilescola.uol.com.br/be/2021/02/rucula.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03401837 .
+	
+conto:p_Salsa a rdfs:Class ;
+	rdfs:label "Salsa"@pt-br;
+	skos:altLabel "Salsinha"@pt-br;
+	skos:altLabel "Cheiro-verde"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2017/06/18/22/37/parsley-2417475_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:00002942 .
+	
+conto:p_TomateSalada a rdfs:Class ;
+	rdfs:label "Tomate Salada"@pt-br;
+	schema:image <https://canaldohorticultor.com.br/wp-content/uploads/2021/02/Tomate-Kaicara-ISLA-Epagri.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03301453 .
+	
+conto:p_TomateItaliano a rdfs:Class ;
+	rdfs:label "Tomate Italiano"@pt-br;
+	schema:image <https://cdn.pixabay.com/photo/2017/09/05/06/39/roma-tomatoes-2716569_640.jpg>;
+	rdfs:subClassOf conto:p_ProdutoPrincipal;
+	rdfs:subClassOf foodon:03301453 .
+	
+# ========================================
+# Espécies
+# ========================================
+
+conto:e_Abobora a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita maxima" ;
+    skos:altLabel "Abóbora-moranga"@pt-br, "Moranga"@pt-br, "Jerimum"@pt-br ;
+    rdfs:comment "Planta cultivada por seus frutos grandes e carnosos, ricos em vitamina A."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2009> .
+
+conto:e_AboboraMoranga a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita moschata" ;
+    skos:altLabel "Abóbora-menina"@pt-br, "Abóbora-pescoço"@pt-br, "Jerimum"@pt-br, "Abóbora-baiana"@pt-br, "Abóbora-seca"@pt-br, "Jerimum de leite"@pt-br ;
+    rdfs:comment "Espécie de abóbora adaptada a climas tropicais; seus frutos são usados em pratos doces e salgados."@pt-br ;
+    skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2011> .
+	
+conto:e_Abobrinha a conto:PlantSpecies ;
+    skos:prefLabel "Cucurbita pepo" ;
+    skos:altLabel "Abobrinha"@pt-br, "Abobrinha-italiana"@pt-br, "Abobrinha-verde"@pt-br ;
+    rdfs:comment "Hortaliça de fruto alongado e tenro, consumida quando jovem."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2012> .
+
+conto:e_Agriao a conto:PlantSpecies ;
+    skos:prefLabel "Barbarea verna" ;
+    skos:altLabel "Agrião da Terra"@pt-br, "Agrião dos jardins"@pt-br, "Agrião de Santa Bárbara"@pt-br, "Agrião de horta"@pt-br ;
+	rdfs:comment "Planta de folhas comestíveis com sabor semelhante ao agrião d'água."@pt-br .
+	
+conto:e_Alface a conto:PlantSpecies ;
+    skos:prefLabel "Lactuca sativa" ;
+    skos:altLabel "Alface"@pt-br, "Alface-crespa"@pt-br, "Alface-americana"@pt-br, "Alface-lisa"@pt-br, "Alface-romana"@pt-br ;
+    rdfs:comment "Hortaliça folhosa muito consumida em saladas, rica em vitaminas e minerais."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_4149> .
+	
+conto:e_Berinjela a conto:PlantSpecies ;
+    skos:prefLabel "Solanum melongena" ;
+    skos:altLabel "Berinjela"@pt-br ;
+    rdfs:comment "Hortaliça de formato alongado e cor roxa, muito utilizada na culinária mediterrânea e árabe."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_7218> .
+
+conto:e_Cenoura a conto:PlantSpecies ;
+    skos:prefLabel "Daucus carota" ;
+    skos:altLabel "Cenoura"@pt-br ;
+    rdfs:comment "Planta cultivada por sua raiz alaranjada rica em betacaroteno."@pt-br ;
+    skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2132> .
+	
+conto:e_Coentro a conto:PlantSpecies ;
+    skos:prefLabel "Coriandrum sativum" ;
+    skos:altLabel "Coentro"@pt-br ;
+    rdfs:comment "Erva aromática muito utilizada como tempero e para decoração de pratos."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_1893> .
+	
+conto:e_Couve a conto:PlantSpecies ;
+    skos:prefLabel "Brassica oleracea" ;
+    skos:altLabel "Repolho"@pt-br, "Couve"@pt-br, "Brócolis"@pt-br, "Couve-flor"@pt-br, "Couve-de-bruxelas"@pt-br, "Couve-rábano"@pt-br, "Couve-manteiga"@pt-br, "Couve de folhas"@pt-br, "Brócoli"@pt-br, "Brócolos"@pt-br, "Couve-brócolos"@pt-br ;
+    rdfs:comment "Espécie que inclui diversas variedades como repolho, couve, brócolis e couve-flor."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_1068> .	
+	
+conto:e_Beterraba a conto:PlantSpecies ;
+    skos:prefLabel "Beta vulgaris" ;
+    skos:altLabel "Beterraba"@pt-br, "Acelga"@pt-br ;
+    rdfs:comment "Planta cultivada por suas raízes tuberosas de cor vermelha intensa, rica em açúcares."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_890> .
+	
+conto:e_Ervilha a conto:PlantSpecies ;
+    skos:prefLabel "Pisum sativum" ;
+    skos:altLabel "Ervilha"@pt-br, "Ervilha-torta"@pt-br ;
+    rdfs:comment "Leguminosa cultivada por suas sementes comestíveis, ricas em proteínas."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_5933> .
+
+conto:e_Maxixe a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis anguria" ;
+    skos:altLabel "Maxixe"@pt-br ;
+	rdfs:comment "Planta nativa do Brasil, com frutos pequenos e espinhosos, consumidos especialmente no Nordeste brasileiro."@pt-br ;
+    skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2002> .
+	
+conto:e_Melancia a conto:PlantSpecies ;
+    skos:prefLabel "Citrullus lanatus" ;
+    skos:altLabel "Melancia"@pt-br ;
+    rdfs:comment "Fruto grande e refrescante, com polpa vermelha e alto teor de água."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_1636> .
+	
+conto:e_Melao a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis melo" ;
+    skos:altLabel "Melão"@pt-br, "Melão-amarelo"@pt-br, "Melão-pele-de-sapo"@pt-br, "Melão-cantalupo"@pt-br ;
+    rdfs:comment "Fruto doce e aromático, com polpa alaranjada ou esverdeada."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2003> .
+	
+conto:e_Milho a conto:PlantSpecies ;
+    skos:prefLabel "Zea mays" ;
+    skos:altLabel "Milho"@pt-br, "Milho-verde"@pt-br, "Milho-de-pipoca"@pt-br, "Milho doce"@pt-br ;
+    rdfs:comment "Cereal de grande importância econômica mundial, cultivado por seus grãos ricos em amido."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_8504> .
+	
+conto:e_Pepino a conto:PlantSpecies ;
+    skos:prefLabel "Cucumis sativus" ;
+    skos:altLabel "Pepino"@pt-br, "Pepino-caipira"@pt-br, "Pepino-japonês"@pt-br, "Pepino-comum"@pt-br ;
+    rdfs:comment "Hortaliça de fruto alongado e refrescante, muito consumida em saladas."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_2004> .
+	
+conto:e_Pimentinha a conto:PlantSpecies ;
+    skos:prefLabel "Capsicum chinense" ;
+    skos:altLabel "Pimenta biquinho"@pt-br, "Pimenta murupi"@pt-br, "Pimenta bode"@pt-br, "Pimenta habanero"@pt-br ;
+	rdfs:comment "Espécie conhecida por conter algumas das pimentas mais picantes do mundo."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_1290> .
+	
+conto:e_Quiabo a conto:PlantSpecies ;
+    skos:prefLabel "Abelmoschus esculentus" ;
+    skos:altLabel "Quiabo"@pt-br ;
+	rdfs:comment "Malvácea produtora de frutos mucilaginosos amplamente consumidos na culinária brasileira, especialmente em pratos típicos como o caruru e o quiabo refogado."@pt-br ;
+    skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_8557> .
+	
+conto:e_Rabanete a conto:PlantSpecies ;
+    skos:prefLabel "Raphanus sativus" ;
+    skos:altLabel "Rabanete"@pt-br, "Nabo Japonês"@pt-br ;
+    rdfs:comment "Hortaliça de raiz comestível, de sabor picante e formato arredondado ou alongado."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_6455> .
+	
+conto:e_Rucula a conto:PlantSpecies ;
+    skos:prefLabel "Eruca sativa" ;
+    skos:altLabel "Rúcula"@pt-br, "Pinchão"@pt-br ;
+    rdfs:comment "Hortaliça folhosa de sabor picante, amplamente consumida em saladas."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_15797> .
+	
+conto:e_Salsa a conto:PlantSpecies ;
+    skos:prefLabel "Petroselinum crispum" ;
+    skos:altLabel "Salsa"@pt-br, "Salsinha"@pt-br, "Cheiro-verde"@pt-br ;
+    rdfs:comment "Erva aromática muito utilizada como tempero e para decoração de pratos."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_5751> .
+	
+conto:e_Tomate a conto:PlantSpecies ;
+    skos:prefLabel "Solanum lycopersicum" ;
+    skos:altLabel "Tomate"@pt-br, "Tomate-cereja"@pt-br, "Tomate-italiano"@pt-br, "Tomate-caqui"@pt-br ;
+    rdfs:comment "Fruto amplamente consumido como hortaliça, rico em licopeno e vitamina C."@pt-br ;
+	skos:exactMatch <http://aims.fao.org/aos/agrovoc/c_7218> .
+
+# ========================================
+# CULTIVAR 1: BRS Paranoá
+# ========================================
+
+conto:cv_BRS_Paranoa a conto:Cultivar ;
+    skos:prefLabel "BRS Paranoá"@pt-br ;
+    rdfs:comment "A cenoura BRS Paranoá é primeira cultivar nacional desenvolvida e validada exclusivamente para sistemas orgânicos de produção. Além disso, apresenta alta resistência ao complexo da queima-das-folhas, causado pelos fungos Alternaria dauci, Cercospora carotae e pela bactéria Xanthomonas hortorum pv. carotae, dispensando completamente qualquer tipo de controle para essa doença. As raízes ainda se destacam pela ótima qualidade em termos de doçura e ótima aparência."@pt-br ;
+    conto:hasSpecies conto:e_Cenoura ;
+    conto:providesProduct conto:prod_Raiz_BRS_Paranoa, conto:prod_Flor_BRS_Paranoa ;
+    conto:hasTrait conto:root_shape_RetaLisa, conto:root_color_LaranjaIntenso, 
+                    conto:root_thickness_BRS_Paranoa, conto:root_length_BRS_Paranoa,
+                    conto:leaf_color_Verde, conto:flower_color_Branco ;
+    conto:hasPreference conto:pref_Temp_BRS_Paranoa, conto:pref_pH_Cenouras, conto:SDP_WellDrainedSoil, conto:WP_Moderate, conto:LP_FullSun ;
+    conto:hasManagement conto:mgmt_Planting_BRS_Paranoa .
+
+# Produtos
+conto:prod_Raiz_BRS_Paranoa a conto:p_Cenoura ;
+	conto:hasHarvest conto:harvest_BRS_Paranoa .
+
+conto:harvest_BRS_Paranoa a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_90d .
+	
+conto:prod_Flor_BRS_Paranoa a conto:p_FlorDeCenoura .
+
+# Preferências
+conto:pref_Temp_BRS_Paranoa a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_10a25C .
+
+conto:pref_pH_Cenouras a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_7a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_BRS_Paranoa a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_RowSpacing_20cm ;
+    conto:plantSpacing conto:q_PlantSpacing_5cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_BRS_Paranoa ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanMar_OutDez_R2,
+                           conto:season_JanFev_OutDez_R3 .
+
+conto:method_DirectSeeding_BRS_Paranoa a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_7a14d .
+
+# Épocas de plantio - Região 1
+conto:season_AnoTodo_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Janeiro ; 
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ; 
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 2
+conto:season_JanMar_OutDez_R2 a conto:PlantingSeason;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 3
+conto:season_JanFev_OutDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ; 
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 2: Brasília
+# ========================================
+
+conto:cv_Brasilia a conto:Cultivar ;
+    skos:prefLabel "Brasília"@pt-br ;
+    rdfs:comment "Raízes cilíndricas com boa resistência a doenças foliares. Ótima opção para cultivo em canteiros, vasos e jardineiras."@pt-br ;
+    conto:hasSpecies conto:e_Cenoura ;
+    conto:providesProduct conto:prod_Raiz_Brasilia, conto:prod_Flor_Brasilia ;
+    conto:hasTrait conto:root_shape_CilindricaPonta, conto:root_color_Laranja,
+                    conto:root_thickness_BRS_Paranoa, conto:root_length_Brasilia,
+                    conto:leaf_color_Verde, conto:flower_color_Branco ;
+    conto:hasPreference conto:pref_Temp_BRS_Paranoa, conto:pref_pH_Cenouras, conto:SDP_WellDrainedSoil, conto:WP_Moderate, conto:LP_FullSun ;
+    conto:hasManagement conto:mgmt_Planting_Brasilia .
+
+# Produtos
+conto:prod_Raiz_Brasilia a conto:p_Cenoura ;
+	conto:hasHarvest conto:harvest_Brasilia .
+
+conto:harvest_Brasilia a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_75d .
+	
+conto:prod_Flor_Brasilia a conto:p_FlorDeCenoura .
+
+# Manejo de plantio
+conto:mgmt_Planting_Brasilia a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_RowSpacing_20cm ;
+    conto:plantSpacing conto:q_PlantSpacing_5cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_BRS_Paranoa ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanMar_SetDez_R2,
+                           conto:season_JanFev_OutDez_R3 .
+
+# Épocas de plantio - Região 2
+conto:season_JanMar_SetDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ; 
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 3: Suprema
+# ========================================
+
+conto:cv_Suprema a conto:Cultivar ;
+    skos:prefLabel "Suprema"@pt-br ;
+    rdfs:comment "Variedade desenvolvida especialmente para cultivo no verão, muito resistente a oscilações de temperatura e umidade. Altamente produtiva, com excelente uniformidade de raízes, pele lisa e coloração laranja intenso. Muito resistente a quebras durante processo de seleção e lavagem, proporcionando ganhos maiores na comercialização do produto. Resistente ao pendoamento, e tolerante à Alternária e Nematóides."@pt-br ;
+    conto:hasSpecies conto:e_Cenoura ;
+    conto:providesProduct conto:prod_Raiz_Suprema, conto:prod_FlorSuprema ;
+    conto:hasTrait conto:root_shape_CilindricaPonta, conto:root_color_Laranja,
+                    conto:root_thickness_Suprema, conto:root_length_Suprema,
+                    conto:leaf_color_Verde, conto:flower_color_Branco ;
+    conto:hasPreference conto:pref_Temp_BRS_Paranoa, conto:pref_pH_Cenouras, conto:SDP_WellDrainedSoil, conto:WP_Moderate, conto:LP_FullSun ;
+    conto:hasManagement conto:mgmt_Planting_Suprema .
+
+# Produtos
+conto:prod_Raiz_Suprema a conto:p_Cenoura ;
+	conto:hasHarvest conto:harvest_Suprema .
+
+conto:harvest_Suprema a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_75d .
+	
+conto:prod_FlorSuprema a conto:p_FlorDeCenoura .
+
+# Manejo de plantio
+conto:mgmt_Planting_Suprema a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_RowSpacing_20cm ;
+    conto:plantSpacing conto:q_PlantSpacing_5cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_BRS_Paranoa ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanMar_SetDez_R2,
+                           conto:season_JanMar_OutDez_R3 .
+
+# Épocas de plantio - Região 3
+conto:season_JanMar_OutDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# ========================================
+# CULTIVAR 4: Itapuã 202
+# ========================================
+
+conto:cv_Itapua_202 a conto:Cultivar ;
+    skos:prefLabel "Itapuã 202"@pt-br ;
+    rdfs:comment "Variedade de ciclo curto e de alta produtividade. Raízes muito uniformes, de pele lisa e com baixa incidência de anéis brancos. Excelente desenvolvimento foliar, com folhas de coloração verde intenso. Ótima opção para a produção de baby leaf. Resistente a Cercóspora."@pt-br ;
+    conto:hasSpecies conto:e_Beterraba ;
+    conto:providesProduct conto:prod_Raiz_Itapua_202, conto:prod_Folha_Itapua_202;
+    conto:hasTrait conto:root_shape_RedondaAchatada, conto:root_color_RoxoEscuro,
+                    conto:root_thickness_Itapua_202, conto:root_length_Itapua_202,
+                    conto:leaf_color_Verde, conto:flower_color_Roxo ;
+    conto:hasPreference conto:pref_Temp_Itapua_202, conto:pref_pH_Itapua_202, conto:LP_FullSun, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Itapua_202 ;
+	conto:hasManagement conto:m_Geral_Beterraba ;
+	conto:hasManagement conto:m_Controle_Pragas ;
+	conto:hasManagement conto:m_Desbaste .
+
+# Produtos
+conto:prod_Raiz_Itapua_202 a conto:p_Beterraba ;
+	conto:hasHarvest conto:harvest_Itapua_202 .
+
+conto:harvest_Itapua_202 a conto:AnnualCropHarvest ;
+	dc:description "Puxe cuidadosamente pelos talos das folhas ou solte a terra ao redor com a mão ou pá."@pt-br ;
+    conto:timeToHarvest_Summer conto:q_Tempo_60d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_75d ;
+	conto:hasCondition conto:harvest_Itapua_202_Condition .
+	
+conto:harvest_Itapua_202_Condition a conto:Condition ;
+	rdfs:label "Quando as raízes atingem o tamanho ideal e a parte superior está bem formada."@pt-br .
+
+conto:prod_Folha_Itapua_202 a conto:p_FolhaBeterraba .
+
+# Preferências
+conto:pref_Temp_Itapua_202 a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_15a20C .
+
+conto:pref_pH_Itapua_202 a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_6a7 .
+
+# Manejo geral para todos os cultivares de beterraba ao longo de todo o ciclo produtivo.
+conto:m_Geral_Beterraba a conto:Management ;
+
+	# Ações individuais desta prática de manejo
+	conto:hasManagementPractice conto:mng_pract_Capina ; # Ação de capina manual para remover plantas daninhas.
+	conto:hasManagementPractice conto:mng_pract_Irrigacao_Leve_Manha_Todo_Ciclo ; # Prática de irrigação.
+
+	# Etapa de desenvolvimento da planta a que se aplica esta prática.
+	conto:hasApplicationWindow conto:m_Geral_Beterraba_Window .
+	
+conto:m_Geral_Beterraba_Window a conto:ApplicationWindow ;
+	conto:appliesThroughoutCycle true .
+	
+# Controle de plantas daninhas com capina manual para cultivos em geral.
+conto:mng_pract_Capina a agro:00020006 ;
+    rdfs:label "Capina Manual"@pt-br ;
+	dc:description "Capina manual de plantas daninhas, à medida que essas ocorrerem na cultura."@pt-br ;
+	rdfs:comment "Dados de pesquisa revelaram que o período crítico de competição entre as plantas daninhas e a planta de beterraba ocorre entre a 2ª e 6ª semanas após a emergência das plantas. Essa competição pode causar perdas de 79% a 96% na produção de raízes, sem mencionar a perda de qualidade do produto em razão da redução do calibre das raízes produzidas."@pt-br .
+
+# Irrigação leve durante a manhã durante todo o ciclo para cultivos em geral.
+conto:mng_pract_Irrigacao_Leve_Manha_Todo_Ciclo a agro:00000006 ;
+	rdfs:label "Irrigação Leve e Frequente pela Manhã Durante Todo o Ciclo"@pt-br ;
+	dc:description "Deve-se realizar irrigações leves e frequentes durante todo o ciclo, sempre no período da manhã, para que a cultura não permaneça molhada durante a noite, que favorecerá o aparecimento de doenças."@pt-br .
+
+conto:m_Controle_Pragas a conto:Management ;
+	conto:hasManagementPractice conto:Controle_De_Pragas ;
+	conto:hasCondition conto:cond_Se_Houver_Largartas_Pulgoes ;
+	conto:hasApplicationWindow conto:m_Geral_Beterraba_Window .
+	
+conto:Controle_De_Pragas a agro:00000023 ;
+	rdfs:label "Controle de Pragas"@pt-br ;
+	dc:description "Use calda de neem ou sabão neutro."@pt-br .
+	
+conto:cond_Se_Houver_Largartas_Pulgoes a conto:Condition ;
+	rdfs:label "Se houver lagartas e pulgões" .
+	
+conto:m_Desbaste a conto:Management ;
+	conto:hasManagementPractice conto:Desbaste;
+	conto:hasApplicationWindow conto:window_15d_Emergencia .
+	
+conto:window_15d_Emergencia a conto:ApplicationWindow ;
+	conto:relativeToStage conto:RS_Emergence ;
+	conto:startOffset conto:t_Duration_15d .
+
+conto:t_Duration_15d a time:Duration ;
+	time:numericDuration 15 ;
+	time:unitType time:unitDay .
+	
+conto:Desbaste a agro:00000027 ;
+	rdfs:label "Desbaste"@pt-br ;
+	dc:description "Retire as plantas mais fracas, mantendo o espaçamento recomendado."@pt-br .
+
+# Manejo de plantio
+conto:mgmt_Planting_Itapua_202 a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_RowSpacing_30cm ;
+    conto:plantSpacing conto:q_PlantSpacing_10cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Itapua_202 ;
+	conto:hasPlantingMethod conto:pm_Beterraba_Muda ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_AnoTodo_R2,
+                           conto:season_JanMai_SetDez_R3 ;
+	conto:hasManagementPractice conto:mng_pract_Canteiros_Beterraba ; # Preparação de canteiros antes do plantio.
+	conto:hasManagementPractice conto:mng_pract_Adubacao_Plantio_Beterraba . # Adubação de plantio.
+
+conto:method_DirectSeeding_Itapua_202 a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a14d ;
+	conto:depth conto:q_Depth_1a2cm .
+	
+conto:pm_Beterraba_Muda a conto:SeedlingTransplanting ;
+	conto:plantingDescription "Colocar a muda em pequenas covas com o devido espaçamento."@pt-br ;
+	conto:hasPropagationMethod conto:PM_BySeeds .
+	
+# Épocas de plantio - Região 2
+conto:season_AnoTodo_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 3
+conto:season_JanMai_SetDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ; 
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# Elaboração de canteiros para beterraba em geral.
+conto:mng_pract_Canteiros_Beterraba a agro:00000512 ;
+	rdfs:label "Preparação de Canteiros"@pt-br ;
+	dc:description "Realizar a construção dos canteiros com dimensões de 1 m a 1,20 m de largura e 30 – 40 cm de altura."@pt-br .
+
+# Adubação de plantio para beterraba em geral.
+conto:mng_pract_Adubacao_Plantio_Beterraba a agro:01000000 ;
+	rdfs:label "Adubação de Plantio"@pt-br ;
+	dc:description "Usar adubo orgânico bem curtido, de sete a dez dias, antes do plantio."@pt-br ;
+	conto:hasAlternative conto:mng_pract_Adubacao_Plantio_Beterraba_Composto_Organico ;
+	conto:hasAlternative conto:mng_pract_Adubacao_Plantio_Beterraba_Esterco_Aves ;
+	conto:hasAlternative conto:mng_pract_Adubacao_Plantio_Beterraba_Esterco_Gado .
+
+# Adubação com composto orgânico para plantio de beterraba em geral.
+conto:mng_pract_Adubacao_Plantio_Beterraba_Composto_Organico a agro:01000000 ;
+	rdfs:label "Adubação de Plantio da Beterraba com Composto Orgânico"@pt-br ;
+	dc:description "Adubação com composto orgânico"@pt-br ;
+	conto:hasAlternativeItem conto:alt_item_Adubo_Composto_Organico .
+	
+conto:alt_item_Adubo_Composto_Organico a conto:FertilizerAlternativeItem ;
+	ro:0000057 conto:FERT_OrganicCompost ;
+	qudt:hasQuantity conto:quantity_MassPerArea_5kgm2 .
+	
+# Adubação com esterco de aves ou cama de frango para plantio de beterraba em geral.
+conto:mng_pract_Adubacao_Plantio_Beterraba_Esterco_Aves a agro:01000000 ;
+	rdfs:label "Adubação de Plantio da Beterraba com Esterco de Aves"@pt-br ;
+	dc:description "Adubação com esterco de aves"@pt-br ;
+	conto:hasAlternativeItem conto:alt_item_Adubo_Esterco_Aves .
+	
+conto:alt_item_Adubo_Esterco_Aves a conto:FertilizerAlternativeItem ;
+	ro:0000057 conto:FERT_PoultryManure ;
+	qudt:hasQuantity conto:quantity_MassPerArea_1_5kgm2 .
+
+# Adubação com esterco de gado para plantio de beterraba em geral.
+conto:mng_pract_Adubacao_Plantio_Beterraba_Esterco_Gado a agro:01000000 ;
+	rdfs:label "Adubação de Plantio da Beterraba com Esterco de Gado"@pt-br ;
+	dc:description "Adubação com esterco de gado"@pt-br ;
+	conto:hasAlternativeItem conto:alt_item_Adubo_Esterco_Gado .
+	
+conto:alt_item_Adubo_Esterco_Gado a conto:FertilizerAlternativeItem ;
+	ro:0000057 conto:FERT_CattleManure ;
+	qudt:hasQuantity conto:quantity_MassPerArea_3kgm2 .
+	
+# ========================================
+# CULTIVAR 5: Saxa
+# ========================================
+
+conto:cv_Saxa a conto:Cultivar ;
+    skos:prefLabel "Saxa"@pt-br ;
+    rdfs:comment "Variedade rústica. Raízes redondas de coloração vermelha. Melhor adaptação em temperaturas amenas e frias."@pt-br ;
+    conto:hasSpecies conto:e_Rabanete ;
+    conto:providesProduct conto:prod_Raiz_Saxa, conto:prod_Folha_Saxa ;
+    conto:hasTrait conto:root_thickness_Saxa ;
+    conto:hasPreference conto:pref_Temp_Saxa, conto:pref_pH_Saxa, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Saxa .
+
+# Produtos
+conto:prod_Raiz_Saxa a conto:p_Rabanete ;
+    conto:hasHarvest conto:harvest_Saxa .
+
+conto:harvest_Saxa a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_25d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_35d .
+	
+conto:prod_Folha_Saxa a conto:p_FolhaRabanete .
+
+# Preferências
+conto:pref_Temp_Saxa a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_15a20C .
+
+conto:pref_pH_Saxa a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Saxa a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_RowSpacing_30cm ;
+    conto:plantSpacing conto:q_PlantSpacing_5cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Saxa ;
+    conto:hasPlantingSeason conto:season_MaiAgo_R1,
+                           conto:season_FevNov_R2,
+                           conto:season_AnoTodo_R3 .
+
+conto:method_DirectSeeding_Saxa a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a10d .
+
+# Épocas de plantio - Região 1
+conto:season_MaiAgo_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto .
+
+# Épocas de plantio - Região 2
+conto:season_FevNov_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro .
+
+# Épocas de plantio - Região 3
+conto:season_AnoTodo_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# ========================================
+# CULTIVAR 6: Minowase Japonês
+# ========================================
+
+conto:cv_Minowase_Japones a conto:Cultivar ;
+    skos:prefLabel "Minowase Japonês"@pt-br ;
+    rdfs:comment "Variedade de boa precocidade. Raízes brancas e cilíndricas, de boa uniformidade e ótima textura. Sabor característico levemente picante e refrescante. Indicado para cultivo no inverno e verão."@pt-br ;
+    conto:hasSpecies conto:e_Rabanete ;
+    conto:providesProduct conto:prod_Raiz_Minowase ;
+    conto:hasTrait conto:root_shape_Cilindrico, conto:root_color_Branco,
+                    conto:root_thickness_Minowase, conto:root_length_Minowase ;
+    conto:hasPreference conto:pref_Temp_Minowase, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Minowase .
+
+# Produtos
+conto:prod_Raiz_Minowase a conto:p_NaboJapones ;
+    conto:hasHarvest conto:harvest_Minowase .
+
+conto:harvest_Minowase a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_60d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_80d .
+
+# Preferências
+conto:pref_Temp_Minowase a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_25a35C .
+
+# Manejo de plantio
+conto:mgmt_Planting_Minowase a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_RowSpacing_30cm ;
+    conto:plantSpacing conto:q_PlantSpacing_10cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Saxa ;
+    conto:hasPlantingSeason conto:season_MaiJul_R1,
+                           conto:season_MarOut_R2,
+                           conto:season_FevNov_R3 .
+
+# Épocas de plantio - Região 1
+conto:season_MaiJul_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Maio ; 
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho .
+
+# Épocas de plantio - Região 2
+conto:season_MarOut_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro .
+
+# Épocas de plantio - Região 3
+conto:season_FevNov_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro .
+	
+# ========================================
+# CULTIVAR 7: Menina Brasileira Precoce
+# ========================================
+
+conto:cv_Menina_Brasileira a conto:Cultivar ;
+    skos:prefLabel "Menina Brasileira Precoce"@pt-br ;
+    rdfs:comment "Planta vigorosa e produtiva com hábito de crescimento em rama. Produz frutos de formato cilíndrico com pescoço alongado e verde-claros. Polpa ideal para refogados."@pt-br ;
+    conto:hasSpecies conto:e_AboboraMoranga ;
+    conto:providesProduct conto:prod_Fruto_Menina_Brasileira, conto:prod_Flor_Menina_Brasileira ;
+    conto:hasTrait conto:fruit_shape_CilindricaPescoco, conto:exocarp_color_VerdeClaro,
+                    conto:mesocarp_color_Laranja, conto:fruit_length_Menina_Brasileira,
+                    conto:fruit_diameter_Menina_Brasileira, conto:leaf_color_VerdeEscuro,
+                    conto:flower_color_Amarelo ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:pref_pH_Menina_Brasileira, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Menina_Brasileira .
+
+# Produtos
+conto:prod_Fruto_Menina_Brasileira a conto:p_AboboraDePescoco ;
+    conto:hasHarvest conto:harvest_Menina_Brasileira .
+
+conto:harvest_Menina_Brasileira a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_75d .
+
+conto:prod_Flor_Menina_Brasileira a conto:p_FlorDeAbobora .
+    
+# Preferências
+conto:pref_Temp_Menina_Brasileira a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_20a30C .
+
+conto:pref_pH_Menina_Brasileira a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_8 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Menina_Brasileira a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_300cm ;
+    conto:plantSpacing conto:q_Spacing_100cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+						   conto:season_JanFev_AgoDez_R2,
+                           conto:season_JanFev_AgoDez_R3 .
+
+conto:method_DirectSeeding_Aboboras a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a8d .
+
+# Épocas de plantio - Região 2
+conto:season_JanFev_AgoDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 3
+conto:season_JanFev_AgoDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 8: Mogango Sul Mineiro
+# ========================================
+
+conto:cv_Mogango_Sul_Mineiro a conto:Cultivar ;
+    skos:prefLabel "Sul Mineiro"@pt-br ;
+    rdfs:comment "Fruto verde claro com listras verde escuro. Boa produtividade e conservação pós colheita. Se adapta melhor no calor."@pt-br ;
+    conto:hasSpecies conto:e_AboboraMoranga ;
+    conto:providesProduct conto:prod_Fruto_Mogango, conto:prod_Flor_Mogango ;
+    conto:hasTrait conto:fruit_shape_Oblongo, conto:exocarp_color_VerdeRajado,
+                    conto:mesocarp_color_Laranja, conto:leaf_color_Verde,
+                    conto:flower_color_Amarelo ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:pref_pH_Menina_Brasileira, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Mogango .
+
+# Produtos
+conto:prod_Fruto_Mogango a conto:p_Mogango ;
+    conto:hasHarvest conto:harvest_Mogango .
+
+conto:harvest_Mogango a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_100d .
+
+conto:prod_Flor_Mogango a conto:p_FlorDeAbobora .
+
+# Manejo de plantio
+conto:mgmt_Planting_Mogango a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_300cm ;
+    conto:plantSpacing conto:q_Spacing_100cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_Jan_AgoDez_R2,
+                           conto:season_Jan_AgoDez_R3 .
+
+# Épocas de plantio - Região 2
+conto:season_Jan_AgoDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 3
+conto:season_Jan_AgoDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 9: Abóbora Moranga Poliniza
+# ========================================
+
+conto:cv_Poliniza a conto:Cultivar ;
+    skos:prefLabel "Poliniza"@pt-br ;
+    rdfs:comment "Classificada como abóbora de mesa, recomendada para exposição em feiras e decoração em eventos. Fruto de excelente aparência e consistência, de coloração alaranjada e com gomos bem salientes. Pode ser utilizada oca como vaso para arranjos."@pt-br ;
+    conto:hasSpecies conto:e_Abobora ;
+    conto:providesProduct conto:prod_Fruto_Poliniza, conto:prod_Flor_Poliniza ;
+    conto:hasTrait conto:fruit_shape_GlobularAchatadaGomos, conto:exocarp_color_Laranja,
+                    conto:mesocarp_color_Laranja, conto:fruit_length_Poliniza,
+                    conto:fruit_diameter_Poliniza, conto:leaf_color_Verde,
+                    conto:flower_color_Amarelo ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:pref_pH_Menina_Brasileira, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Poliniza .
+
+# Produtos
+conto:prod_Fruto_Poliniza a conto:p_Moranga ;
+    conto:hasHarvest conto:harvest_Poliniza .
+
+conto:harvest_Poliniza a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_110d .
+
+conto:prod_Flor_Poliniza a conto:p_FlorDeAbobora .
+
+# Manejo de plantio
+conto:mgmt_Planting_Poliniza a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_400cm ;
+    conto:plantSpacing conto:q_Spacing_400cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+							conto:season_AgoDez_R2,
+                           conto:season_AgoDez_R3 .
+
+# Épocas de plantio - Região 2
+conto:season_AgoDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 3
+conto:season_AgoDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# ========================================
+# CULTIVAR 10: Abobrinha Tortuga
+# ========================================
+
+conto:cv_Tortuga a conto:Cultivar ;
+    skos:prefLabel "Tortuga"@pt-br ;
+    rdfs:comment "Abobrinha de tronco do tipo redonda. Fruto globular achatado com gomos e casca verde escuro. Ótima opção para rechear."@pt-br ;
+    conto:hasSpecies conto:e_Abobora ;
+    conto:providesProduct conto:prod_Fruto_Tortuga, conto:prod_Flor_Tortuga ;
+    conto:hasTrait conto:fruit_shape_GlobularAchatada, conto:exocarp_color_VerdeEscuro,
+                    conto:mesocarp_color_Creme, conto:fruit_length_Tortuga,
+                    conto:fruit_diameter_Tortuga, conto:leaf_color_Verde,
+                    conto:flower_color_Amarelo ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:pref_pH_Tortuga, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Tortuga .
+
+# Produtos
+conto:prod_Fruto_Tortuga a conto:p_Abobrinha ;
+    conto:hasHarvest conto:harvest_Tortuga .
+
+conto:harvest_Tortuga a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_45a60d .
+
+conto:prod_Flor_Tortuga a conto:p_FlorDeAbobora .
+
+# Preferências
+conto:pref_pH_Tortuga a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_7a6_8 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Tortuga a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_100cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_Jan_SetDez_R3 .
+
+# Épocas de plantio - Região 3
+conto:season_Jan_SetDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 11: Abobrinha Caserta
+# ========================================
+
+conto:cv_Caserta a conto:Cultivar ;
+    skos:prefLabel "Caserta"@pt-br ;
+    rdfs:comment "Planta vigorosa e produtiva com hábito de crescimento em moita. Frutos verde-claros, com listras e formato cilíndrico. Melhor adaptação em temperaturas quentes e amenas. Fruto cilíndrico, de cor verde clara com estrias verde escuro, segmento de padrão caserta."@pt-br ;
+    conto:hasSpecies conto:e_Abobrinha ;
+    conto:providesProduct conto:prod_Fruto_Caserta, conto:prod_Flor_Caserta ;
+    conto:hasTrait conto:fruit_shape_Cilindrica, conto:exocarp_color_VerdeClaroRajado,
+                    conto:mesocarp_color_Creme, conto:fruit_length_Caserta,
+                    conto:fruit_diameter_Caserta, conto:leaf_color_VerdeEscuro,
+                    conto:flower_color_Amarelo ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:pref_pH_Tortuga, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Caserta .
+
+# Produtos
+conto:prod_Fruto_Caserta a conto:p_Abobrinha ;
+    conto:hasHarvest conto:harvest_Tortuga .
+
+conto:prod_Flor_Caserta a conto:p_FlorDeAbobora .
+
+# Manejo de plantio
+conto:mgmt_Planting_Caserta a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_Jan_SetDez_R3 .
+
+# ========================================
+# CULTIVAR 12: Melancia Fairfax
+# ========================================
+
+conto:cv_Fairfax a conto:Cultivar ;
+    skos:prefLabel "Fairfax"@pt-br ;
+    rdfs:comment "Frutos alongados de cor verde claro com listas verde escuras."@pt-br ;
+    conto:hasSpecies conto:e_Melancia ;
+    conto:providesProduct conto:prod_Fruto_Fairfax ;
+    conto:hasTrait conto:fruit_shape_Oblongo, conto:exocarp_color_VerdeEscuroVerdeClaro,
+                    conto:mesocarp_color_Vermelho ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Fairfax .
+
+# Produtos
+conto:prod_Fruto_Fairfax a conto:p_Melancia ;
+    conto:hasHarvest conto:harvest_Fairfax .
+
+conto:harvest_Fairfax a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_90a100d .
+
+# Manejo de plantio
+conto:mgmt_Planting_Fairfax a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_200cm ;
+    conto:plantSpacing conto:q_Spacing_150cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Melancia ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_Jan_OutDez_R3 .
+
+conto:method_DirectSeeding_Melancia a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_5a14d .
+
+# Épocas de plantio - Região 1
+conto:season_MarOut_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro .
+
+# Épocas de plantio - Região 3
+conto:season_Jan_OutDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 13: Melão Caipira Gaúcho
+# ========================================
+
+conto:cv_Caipira_Gaucho a conto:Cultivar ;
+    skos:prefLabel "Caipira Gaúcho"@pt-br ;
+    rdfs:comment "Frutos cilíndricos com gomos de cor amarelo destonado. Ótima rusticidade e excelente sabor."@pt-br ;
+    conto:hasSpecies conto:e_Melao ;
+    conto:providesProduct conto:prod_Fruto_Caipira_Gaucho ;
+    conto:hasTrait conto:fruit_shape_OblongoGomos, conto:exocarp_color_Amarelo,
+                    conto:mesocarp_color_Branco ;
+    conto:hasPreference conto:pref_Temp_Caipira_Gaucho, conto:pref_pH_Caipira_Gaucho, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Caipira_Gaucho .
+
+# Produtos
+conto:prod_Fruto_Caipira_Gaucho a conto:p_MelaoGaucho ;
+    conto:hasHarvest conto:harvest_Caipira_Gaucho .
+
+conto:harvest_Caipira_Gaucho a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_85d .
+	
+# Preferências
+conto:pref_Temp_Caipira_Gaucho a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_25a30C .
+
+conto:pref_pH_Caipira_Gaucho a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_8a7_0 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Caipira_Gaucho a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_150cm ;
+    conto:plantSpacing conto:q_Spacing_150cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_Jan_AgoDez_R3 .
+						   
+# ========================================
+# CULTIVAR 14: Pepino Aodai
+# ========================================
+
+conto:cv_Aodai a conto:Cultivar ;
+    skos:prefLabel "Aodai"@pt-br ;
+    rdfs:comment "Frutos cilíndricos com pontas obtusas de cor verde escuro. Ótima opção para consumo in natura."@pt-br ;
+    conto:hasSpecies conto:e_Pepino ;
+    conto:providesProduct conto:prod_Fruto_Aodai, conto:prod_Flor_Aodai ;
+    conto:hasTrait conto:fruit_shape_Cilindrica, conto:exocarp_color_VerdeEscuro,
+                    conto:mesocarp_color_VerdeClaro, conto:fruit_length_Aodai,
+                    conto:fruit_diameter_Aodai, conto:flower_color_Amarelo ;
+    conto:hasPreference conto:pref_Temp_Menina_Brasileira, conto:pref_pH_Aodai, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Aodai .
+
+# Produtos
+conto:prod_Fruto_Aodai a conto:p_PepinoJapones ;
+    conto:hasHarvest conto:harvest_Aodai .
+
+conto:harvest_Aodai a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_70d .
+
+conto:prod_Flor_Aodai a conto:p_FlorDePepino .
+
+# Preferências
+conto:pref_pH_Aodai a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Aodai a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_200cm ;
+    conto:plantSpacing conto:q_Spacing_100cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Aboboras ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanMar_AgoDez_R2,
+                           conto:season_JanFev_AgoDez_R3 .
+
+# Épocas de plantio - Região 2
+conto:season_JanMar_AgoDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 15: Verdão (Coentro)
+# ========================================
+
+conto:cv_Verdao a conto:Cultivar ;
+    skos:prefLabel "Verdão"@pt-br ;
+    rdfs:comment "Planta rústica com folhas verdes escuras. Ótima adaptação a altas temperaturas. Boa tolerância a condições adversas de solo. Variedade de fácil produção e de ótimo rendimento."@pt-br ;
+    conto:hasSpecies conto:e_Coentro ;
+    conto:providesProduct conto:prod_Folhas_Verdao, conto:prod_Flor_Verdao ;
+    conto:hasTrait conto:leaf_color_Verde ;
+    conto:hasPreference conto:pref_Temp_Verdao, conto:pref_pH_Verdao, conto:LP_PartialShade, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Verdao .
+
+# Produtos
+conto:prod_Folhas_Verdao a conto:p_Coentro ;
+    conto:hasHarvest conto:harvest_Verdao .
+
+conto:harvest_Verdao a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_35d .
+
+conto:prod_Flor_Verdao a conto:p_FlorDeCoentro .
+
+# Preferências
+conto:pref_Temp_Verdao a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_15a30C .
+
+conto:pref_pH_Verdao a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_7a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Verdao a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_20cm ;
+    conto:plantSpacing conto:q_Spacing_10cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Verdao ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanMar_SetDez_R2,
+                           conto:season_JanMar_SetDez_R3 .
+
+conto:method_DirectSeeding_Verdao a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_7a21d .
+
+# Épocas de plantio - Região 3
+conto:season_JanMar_SetDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 16: Stella (Salsa)
+# ========================================
+
+conto:cv_Stella a conto:Cultivar ;
+    skos:prefLabel "Stella"@pt-br ;
+    rdfs:comment "Plantas vigorosas, folhas grandes e lisas de cor verde brilhante. Alto rendimento e precocidade. Permite vários cortes e seu consumo pode ser fresco ou desidratado (indústria). Variedade muito precoce e produtiva, aroma intenso. Ótima uniformidade na emergência de plantas e ponto de colheita, tem fácil rebrote e boa resistência ao calor em épocas de clima seco."@pt-br ;
+    conto:hasSpecies conto:e_Salsa ;
+    conto:providesProduct conto:prod_Folhas_Stella ;
+    conto:hasTrait conto:leaf_color_Verde ;
+	conto:hasPreference conto:LP_PartialShade, conto:WP_Moderate, conto:SDP_WellDrainedSoil;
+    conto:hasManagement conto:mgmt_Planting_Stella .
+
+# Produtos
+conto:prod_Folhas_Stella a conto:p_Salsa ;
+    conto:hasHarvest conto:harvest_Stella .
+
+conto:harvest_Stella a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_55d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_75d .
+
+# Manejo de plantio
+conto:mgmt_Planting_Stella a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_40cm ;
+    conto:plantSpacing conto:q_Spacing_10cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Stella ;
+    conto:hasPlantingSeason conto:season_FevNov_R1,
+                           conto:season_AnoTodo_R2,
+                           conto:season_AnoTodo_R3 .
+
+conto:method_DirectSeeding_Stella a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_10a28d .
+
+# Épocas de plantio - Região 1
+conto:season_FevNov_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro .
+
+# ========================================
+# CULTIVAR 17: Jaíba (Maxixe)
+# ========================================
+
+conto:cv_Jaiba a conto:Cultivar ;
+    skos:prefLabel "Jaíba"@pt-br ;
+    rdfs:comment "Variedade de maxixe liso com frutos verdes de formato levemente oblongo. Planta de clima quente e de crescimento rasteiro, porém, pode ser tutorado, crescendo em cercas ou treliças."@pt-br ;
+    conto:hasSpecies conto:e_Maxixe ;
+    conto:providesProduct conto:prod_Fruto_Jaiba, conto:prod_Flor_Jaiba ;
+    conto:hasTrait conto:fruit_shape_Oblongo, conto:exocarp_color_Verde,
+                    conto:fruit_length_Jaiba ;
+    conto:hasPreference conto:pref_pH_Jaiba, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Jaiba .
+
+# Produtos
+conto:prod_Fruto_Jaiba a conto:p_Maxixe ;
+    conto:hasHarvest conto:harvest_Jaiba .
+
+conto:harvest_Jaiba a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_70d .
+
+conto:prod_Flor_Jaiba a conto:p_FlorDeMaxixe .
+
+# Preferências
+conto:pref_pH_Jaiba a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Jaiba a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_300cm ;
+    conto:plantSpacing conto:q_Spacing_100cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Jaiba ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_JanFev_SetDez_R3 .
+
+conto:method_DirectSeeding_Jaiba a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a8d .
+
+# Épocas de plantio - Região 3
+conto:season_JanFev_SetDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# ========================================
+# CULTIVAR 18: Santa Cruz 47 (Quiabo)
+# ========================================
+
+conto:cv_Santa_Cruz_47 a conto:Cultivar ;
+    skos:prefLabel "Santa Cruz 47"@pt-br ;
+    rdfs:comment "Frutos cilíndricos com ponta, sem Fibras e de casca verde claro. Resistente à podridão bacteriana dos frutos. Tipo de Quiabo de alta produtividade e excelente uniformidade de planta e frutos."@pt-br ;
+    conto:hasSpecies conto:e_Quiabo ;
+    conto:providesProduct conto:prod_Fruto_Santa_Cruz_47, conto:prod_Flor_Santa_Cruz_47 ;
+    conto:hasTrait conto:fruit_shape_CilindricoPonta, conto:fruit_length_Santa_Cruz_47,
+                    conto:fruit_diameter_Santa_Cruz_47 ;
+	conto:hasPreference conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil;
+    conto:hasManagement conto:mgmt_Planting_Santa_Cruz_47 .
+
+# Produtos
+conto:prod_Fruto_Santa_Cruz_47 a conto:p_Quiabo ;
+    conto:hasHarvest conto:harvest_Santa_Cruz_47 .
+
+conto:harvest_Santa_Cruz_47 a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_70d .
+
+conto:prod_Flor_Santa_Cruz_47 a conto:p_FlorDeQuiabo .
+
+# Manejo de plantio
+conto:mgmt_Planting_Santa_Cruz_47 a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_80cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Santa_Cruz_47 ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanMar_AgoDez_R2,
+                           conto:season_Jan_AgoDez_R3 .
+
+conto:method_DirectSeeding_Santa_Cruz_47 a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a21d .
+
+# ========================================
+# CULTIVAR 19: Rita IS 057 (Berinjela)
+# ========================================
+
+conto:cv_Rita_IS_057 a conto:Cultivar ;
+    skos:prefLabel "Rita IS 057"@pt-br ;
+    rdfs:comment "Planta compacta e vigorosa com ampla adaptação de cultivo. Frutos de formato cilíndrico e coloração roxo escuro brilhante."@pt-br ;
+    conto:hasSpecies conto:e_Berinjela ;
+    conto:providesProduct conto:prod_Fruto_Rita ;
+    conto:hasTrait conto:fruit_shape_Cilindrica, conto:exocarp_color_RoxoEscuro,
+                    conto:mesocarp_color_Branco, conto:fruit_length_Rita,
+                    conto:fruit_diameter_Rita, conto:leaf_color_Verde,
+                    conto:flower_color_Roxo ;
+    conto:hasPreference conto:pref_Temp_Rita, conto:pref_pH_Rita, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Rita .
+
+# Produtos
+conto:prod_Fruto_Rita a conto:p_Berinjela ;
+    conto:hasHarvest conto:harvest_Rita .
+
+conto:harvest_Rita a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_100d .
+
+# Preferências
+conto:pref_Temp_Rita a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_20a35C .
+
+conto:pref_pH_Rita a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_6a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Rita a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Rita ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanMar_AgoDez_R2,
+                           conto:season_JanFev_AgoDez_R3 .
+
+conto:method_DirectSeeding_Rita a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_7a14d .
+
+# ========================================
+# CULTIVAR 20: Confeito (Milho)
+# ========================================
+
+conto:cv_Confeito a conto:Cultivar ;
+    skos:prefLabel "Confeito"@pt-br ;
+    rdfs:comment "Variedade com alto teor de açúcar. Possui espigas uniformes e com excelente produção de grãos. Ótima opção para o mercado fresco e de conservas. Boa produção a nível industrial."@pt-br ;
+    conto:hasSpecies conto:e_Milho ;
+    conto:providesProduct conto:prod_Espiga_Confeito ;
+    conto:hasTrait conto:fruit_shape_Cilindrica, conto:exocarp_color_Amarelo,
+                    conto:mesocarp_color_Amarelo, conto:fruit_length_Confeito ;
+    conto:hasPreference conto:pref_pH_Confeito, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Confeito .
+
+# Produtos
+conto:prod_Espiga_Confeito a conto:p_MilhoDoce ;
+    conto:hasHarvest conto:harvest_Confeito .
+
+conto:harvest_Confeito a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_80d .
+
+# Preferências
+conto:pref_pH_Confeito a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Confeito a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_25cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Confeito ;
+    conto:hasPlantingSeason conto:season_JanAbr_SetDez_R1,
+                           conto:season_JanAbr_SetDez_R2,
+                           conto:season_Jan_AgoDez_R3 .
+
+conto:method_DirectSeeding_Confeito a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a7d .
+
+# Épocas de plantio - Região 1
+conto:season_JanAbr_SetDez_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Janeiro ; 
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 2
+conto:season_JanAbr_SetDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# ========================================
+# CULTIVAR 21: Alderman (Ervilha)
+# ========================================
+
+conto:cv_Alderman a conto:Cultivar ;
+    skos:prefLabel "Telefone Alta Alderman"@pt-br ;
+    rdfs:comment "Variedade do tipo Alderman, com vagens curtas e cilíndricas de 7 a 9 grãos cada. Ideal para debulhar. Planta de crescimento indeterminado."@pt-br ;
+    conto:hasSpecies conto:e_Ervilha ;
+    conto:providesProduct conto:prod_Vagem_Alderman, conto:prod_Flor_Alderman ;
+    conto:hasTrait conto:fruit_shape_CilindricaAchatada, conto:exocarp_color_Verde,
+                    conto:mesocarp_color_Verde, conto:fruit_length_Alderman,
+                    conto:leaf_color_Verde, conto:flower_color_Branco ;
+    conto:hasPreference conto:pref_Temp_Alderman, conto:pref_pH_Alderman, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Alderman .
+
+# Produtos
+conto:prod_Vagem_Alderman a conto:p_Ervilha ;
+    conto:hasHarvest conto:harvest_Alderman .
+
+conto:harvest_Alderman a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Winter conto:q_Tempo_100d .
+
+conto:prod_Flor_Alderman a conto:p_FlorDeErvilha .
+
+# Preferências
+conto:pref_Temp_Alderman a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_15a25C .
+
+conto:pref_pH_Alderman a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_9a6_8 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Alderman a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_80cm ;
+    conto:plantSpacing conto:q_Spacing_60cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alderman ;
+    conto:hasPlantingSeason conto:season_MaiJul_R1,
+                           conto:season_AbrAgo_R2,
+                           conto:season_MarSet_R3 .
+
+conto:method_DirectSeeding_Alderman a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_5a8d .
+
+# Épocas de plantio - Região 2
+conto:season_AbrAgo_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto .
+
+# Épocas de plantio - Região 3
+conto:season_MarSet_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro .
+
+# ========================================
+# CULTIVAR 22: Relva (Ervilha Torta)
+# ========================================
+
+conto:cv_Relva a conto:Cultivar ;
+    skos:prefLabel "Relva"@pt-br ;
+    rdfs:comment "Plantas de crescimento indeterminado, com bom enfolhamento e vagens de cor verde médio. Ampla adaptação a diversas regiões brasileiras. Uniformidade de plantas, qualidade de vagens e a boa tolerância ao oídio."@pt-br ;
+    conto:hasSpecies conto:e_Ervilha ;
+    conto:providesProduct conto:prod_Vagem_Relva, conto:prod_Flor_Relva ;
+    conto:hasTrait conto:fruit_length_Relva ;
+    conto:hasPreference conto:pref_Temp_Alderman, conto:pref_pH_Alderman, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Relva .
+
+# Produtos
+conto:prod_Vagem_Relva a conto:p_ErvilhaTorta ;
+    conto:hasHarvest conto:harvest_Relva .
+
+conto:harvest_Relva a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Winter conto:q_Tempo_70d .
+
+conto:prod_Flor_Relva a conto:p_FlorDeErvilha .
+
+# Manejo de plantio
+conto:mgmt_Planting_Relva a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_40cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alderman ;
+    conto:hasPlantingSeason conto:season_MaiJul_R1,
+                           conto:season_AbrAgo_R2,
+                           conto:season_MarSet_R3 .
+						   
+# ========================================
+# CULTIVAR 23: Iracema (Pimenta Biquinho)
+# ========================================
+
+conto:cv_Iracema a conto:Cultivar ;
+    skos:prefLabel "Iracema"@pt-br ;
+    rdfs:comment "Variedade de pimenta sem ardor, crocante e muito saborosa, podendo ser consumida como aperitivo. Frutos de coloração verde quando imaturos e vermelho quando maduros. Ausência de pungência. Ótima para conservas."@pt-br ;
+    conto:hasSpecies conto:e_Pimentinha ;
+    conto:providesProduct conto:prod_Fruto_Iracema ;
+    conto:hasTrait conto:fruit_shape_CilindricoPonta, conto:exocarp_color_VerdeVermelho,
+                    conto:mesocarp_color_VerdeVermelho, conto:fruit_length_Iracema,
+                    conto:fruit_diameter_Iracema ;
+    conto:hasPreference conto:pref_Temp_Iracema, conto:pref_pH_Iracema, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Iracema .
+
+# Produtos
+conto:prod_Fruto_Iracema a conto:p_PimentaBiquinho ;
+    conto:hasHarvest conto:harvest_Iracema .
+
+conto:harvest_Iracema a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_90d .
+
+# Preferências
+conto:pref_Temp_Iracema a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_20a30C .
+
+conto:pref_pH_Iracema a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_8 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Iracema a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_120cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Iracema ;
+    conto:hasPlantingSeason conto:season_FevOut_R1,
+                           conto:season_AgoDez_R2,
+                           conto:season_SetDez_R3 .
+
+conto:method_DirectSeeding_Iracema a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_7a14d .
+
+# Épocas de plantio - Região 1
+conto:season_FevOut_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro .
+
+# Épocas de plantio - Região 3
+conto:season_SetDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Setembro ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# ========================================
+# CULTIVAR 24: SCS375 Kaicara (Tomate)
+# ========================================
+
+conto:cv_SCS375_Kaicara a conto:Cultivar ;
+    skos:prefLabel "SCS375 Kaicara"@pt-br ;
+    rdfs:comment "Planta de tipo indeterminado e frutos de tamanho médio, coloração vermelho e formato caqui. O fruto também apresenta excelente sabor e produtividade. Planta de crescimento indeterminado com média de produtividade de 67 t/há. Folhas curtas, horizontais e de largura média. Cultivar que apresenta frutos de excelente sabor, além de boa tolerância a doenças foliares, o que a torna adequada aos diversos sistemas de cultivo, principalmente o orgânico."@pt-br ;
+    conto:hasSpecies conto:e_Tomate ;
+    conto:providesProduct conto:prod_Fruto_Kaicara ;
+    conto:hasTrait conto:fruit_shape_Redondo, conto:exocarp_color_Vermelho,
+                    conto:mesocarp_color_Vermelho, conto:fruit_diameter_Kaicara ;
+    conto:hasPreference conto:pref_Temp_Kaicara, conto:pref_pH_Kaicara, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Kaicara .
+
+# Produtos
+conto:prod_Fruto_Kaicara a conto:p_TomateSalada ;
+    conto:hasHarvest conto:harvest_Kaicara .
+
+conto:harvest_Kaicara a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_100d .
+
+# Preferências
+conto:pref_Temp_Kaicara a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_15a30C .
+
+conto:pref_pH_Kaicara a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_5_5a6_5 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Kaicara a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Tomate ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_JanFev_AgoDez_R3 .
+
+conto:method_DirectSeeding_Tomate a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_5a14d .
+	
+# ========================================
+# CULTIVAR 25: IPA 6 (Tomate)
+# ========================================
+
+conto:cv_IPA_6 a conto:Cultivar ;
+    skos:prefLabel "IPA 6"@pt-br ;
+    rdfs:comment "Planta de crescimento determinado muito rústica, de excelente sanidade e vigor. Frutos globulares de coloração vermelho claro e pele muito resistente, evitando rachaduras nos frutos e garantindo uma boa produção e transporte."@pt-br ;
+    conto:hasSpecies conto:e_Tomate ;
+    conto:providesProduct conto:prod_Fruto_IPA6 ;
+    conto:hasTrait conto:fruit_shape_RedondoAchatado, conto:exocarp_color_Vermelho,
+                    conto:mesocarp_color_Vermelho ;
+    conto:hasPreference conto:pref_Temp_Kaicara, conto:pref_pH_Kaicara, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_IPA6 .
+
+# Produto Fruto
+conto:prod_Fruto_IPA6 a conto:p_TomateItaliano;
+    conto:hasHarvest conto:harvest_IPA6 .
+
+conto:harvest_IPA6 a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_120d .
+
+# Manejo de plantio
+conto:mgmt_Planting_IPA6 a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Tomate ;
+    conto:hasPlantingSeason conto:season_MarOut_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_Jan_AgoDez_R3 .
+						   
+# ========================================
+# CULTIVAR 26: Moana (Alface Crespa)
+# ========================================
+
+conto:cv_Moana a conto:Cultivar ;
+    skos:prefLabel "Moana"@pt-br ;
+    rdfs:comment "Alface crespa, planta rústica, coloração verde claro, tamanho grande. Folhas com bordos repicados e planta muito atrativa."@pt-br ;
+    conto:hasSpecies conto:e_Alface ;
+    conto:providesProduct conto:prod_Folhas_Moana;
+    conto:hasTrait conto:leaf_color_VerdeClaro, conto:flower_color_Amarelo,
+                    conto:diameter_Moana ;
+    conto:hasPreference conto:pref_Temp_Alface, conto:pref_pH_Alface, conto:LP_PartialShade, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Moana .
+
+# Produtos
+conto:prod_Folhas_Moana a conto:p_AlfaceCrespa ;
+    conto:hasHarvest conto:harvest_Moana .
+
+conto:harvest_Moana a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_45d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_60d .
+
+# Preferências
+conto:pref_Temp_Alface a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_15a20C .
+
+conto:pref_pH_Alface a conto:SoilpHPreference ;
+    qudt:hasQuantity conto:q_pH_6_0a6_8 .
+
+# Manejo de plantio
+conto:mgmt_Planting_Moana a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_30cm ;
+    conto:plantSpacing conto:q_Spacing_30cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alface ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_AnoTodo_R2,
+                           conto:season_AnoTodo_R3 .
+
+conto:method_DirectSeeding_Alface a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_4a7d .
+	
+# ========================================
+# CULTIVAR 27: Regina de Verao (Alface Lisa)
+# ========================================
+
+conto:cv_Regina_de_Verao a conto:Cultivar ;
+    skos:prefLabel "Regina de Verão"@pt-br ;
+    rdfs:comment "Folhas soltas, lisas, de coloração verde claro sem formação de cabeça no inverno. Sementes pretas e brancas."@pt-br ;
+    conto:hasSpecies conto:e_Alface ;
+    conto:providesProduct conto:prod_Folhas_Regina ;
+    conto:hasTrait conto:leaf_color_VerdeClaro, conto:flower_color_Amarelo,
+                    conto:diameter_Regina ;
+    conto:hasPreference conto:pref_Temp_Alface, conto:pref_pH_Alface, conto:LP_PartialShade, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Regina .
+
+# Produtos
+conto:prod_Folhas_Regina a conto:p_AlfaceLisa ;
+    conto:hasHarvest conto:harvest_Regina .
+
+conto:harvest_Regina a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_65d .
+
+# Manejo de plantio
+conto:mgmt_Planting_Regina a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_30cm ;
+    conto:plantSpacing conto:q_Spacing_30cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alface ;
+    conto:hasPlantingSeason conto:season_FevOut_R1,
+                           conto:season_JanMai_OutDez_R2,
+                           conto:season_JanMai_OutDez_R3 .
+
+# Épocas de plantio - Região 2
+conto:season_JanMai_OutDez_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+
+# Épocas de plantio - Região 3
+conto:season_JanMai_OutDez_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Janeiro ;
+	time:hasTime conto:time_Fevereiro ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Outubro ;
+	time:hasTime conto:time_Novembro ;
+	time:hasTime conto:time_Dezembro .
+	
+# ========================================
+# CULTIVAR 28: Grandes Lagos Americana (Alface Americana)
+# ========================================
+
+conto:cv_Grandes_Lagos_Americana a conto:Cultivar ;
+    skos:prefLabel "Grandes Lagos Americana"@pt-br ;
+    rdfs:comment "Planta repolhuda com formação de cabeça, folhas crocantes de coloração verde escuro. Semente brancas. Disponível peletizada."@pt-br ;
+    conto:hasSpecies conto:e_Alface ;
+    conto:providesProduct conto:prod_Folhas_GLA ;
+    conto:hasTrait conto:leaf_color_VerdeEscuro, conto:flower_color_Amarelo,
+                    conto:diameter_GLA ;
+    conto:hasPreference conto:pref_Temp_Alface, conto:pref_pH_Alface, conto:LP_PartialShade, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_GLA .
+
+# Produtos
+conto:prod_Folhas_GLA a conto:p_AlfaceAmericana ;
+    conto:hasHarvest conto:harvest_GLA .
+
+conto:harvest_GLA a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Winter conto:q_Tempo_80d .
+
+# Manejo de plantio
+conto:mgmt_Planting_GLA a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_30cm ;
+    conto:plantSpacing conto:q_Spacing_30cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alface ;
+    conto:hasPlantingSeason conto:season_AbrJul_R1,
+                           conto:season_MarJul_R2,
+                           conto:season_MarJul_R3 .
+
+# Épocas de plantio - Região 1
+conto:season_AbrJul_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho .
+
+# Épocas de plantio - Região 2
+conto:season_MarJul_R2 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao2 ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho .
+
+# Épocas de plantio - Região 3
+conto:season_MarJul_R3 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao3 ;
+	time:hasTime conto:time_Marco ;
+	time:hasTime conto:time_Abril ;
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho .
+	
+# ========================================
+# CULTIVAR 29: Donatella (Rúcula)
+# ========================================
+
+conto:cv_Donatella a conto:Cultivar ;
+    skos:prefLabel "Donatella"@pt-br ;
+    rdfs:comment "Folhas grandes, lisas e de coloração verde escuro. Variedade altamente produtiva e de fácil rebrote. Ótima uniformidade na emergência de plantas. Precocidade. Uniformidade no ponto de colheita. Ótima para produção de folhas jovens."@pt-br ;
+    conto:hasSpecies conto:e_Rucula ;
+    conto:providesProduct conto:prod_Folhas_Donatella ;
+    conto:hasTrait conto:leaf_color_VerdeClaro, conto:height_Donatella ;
+	conto:hasPreference conto:LP_PartialShade, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Donatella .
+
+# Produtos
+conto:prod_Folhas_Donatella a conto:p_Rucula ;
+    conto:hasHarvest conto:harvest_Donatella .
+
+conto:harvest_Donatella a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_40d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_60d .
+
+# Características
+conto:height_Donatella a to:0000135 ;
+    qudt:hasQuantity conto:q_Length_14a18cm .
+
+# Manejo de plantio
+conto:mgmt_Planting_Donatella a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_30cm ;
+    conto:plantSpacing conto:q_Spacing_3cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alface ;
+    conto:hasPlantingSeason conto:season_FevNov_R1,
+                           conto:season_AnoTodo_R2,
+                           conto:season_AnoTodo_R3 .
+						   
+# ========================================
+# CULTIVAR 30: Agrião de Terra
+# ========================================
+
+conto:cv_Agriao_de_Terra a conto:Cultivar ;
+    skos:prefLabel "Agrião de Terra"@pt-br ;
+    rdfs:comment "Planta de folhas verde escuro, lisas e macias. Tem sabor picante bem característico, podem ser consumidas cruas em saladas e sanduíches e outras receitas culinárias."@pt-br ;
+    conto:hasSpecies conto:e_Agriao ;
+    conto:providesProduct conto:prod_Folhas_Agriao ;
+    conto:hasTrait conto:leaf_color_Verde, conto:flower_color_Amarelo,
+                    conto:height_Agriao ;
+    conto:hasPreference conto:pref_Temp_Alface, conto:pref_pH_Alface, conto:LP_PartialShade, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Agriao .
+
+# Produtos
+conto:prod_Folhas_Agriao a conto:p_AgriaoDaTerra ;
+    conto:hasHarvest conto:harvest_Agriao .
+
+conto:harvest_Agriao a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_60d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_80d .
+
+# Características
+conto:height_Agriao a to:0000135 ;
+    qudt:hasQuantity conto:q_Length_8a15cm .
+
+# Manejo de plantio
+conto:mgmt_Planting_Agriao a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_30cm ;
+    conto:plantSpacing conto:q_Spacing_20cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Alface ;
+    conto:hasPlantingSeason conto:season_AbrAgo_R1,
+                           conto:season_MarOut_R2,
+                           conto:season_AnoTodo_R3 .
+
+# Épocas de plantio - Região 1
+conto:season_AbrAgo_R1 a conto:PlantingSeason ;
+	dul:hasLocation conto:place_Regiao1 ;
+	time:hasTime conto:time_Abril ; 
+	time:hasTime conto:time_Maio ;
+	time:hasTime conto:time_Junho ;
+	time:hasTime conto:time_Julho ;
+	time:hasTime conto:time_Agosto .
+	
+# ========================================
+# CULTIVAR 31: Piracicaba Precoce (Brócolis)
+# ========================================
+
+conto:cv_Piracicaba_Precoce a conto:Cultivar ;
+    skos:prefLabel "Piracicaba Precoce"@pt-br ;
+    rdfs:comment "Variedade ramoso, de coloração verde azulado, apresenta excelente adaptação a climas amenos e quentes. Devido aos talos firmes, essa variedade é mais indicada para ser cozida no vapor, proporcionando uma experiência mais agradável em saladas, refogados, quiches, empadas, entre outros pratos. Cultivar de plantas vigorosas demonstra boa resistência a temperaturas elevadas. Produz inflorescências de cor creme, com firmeza, medindo entre 15 a 20 cm de diâmetro e pesando de 0,7 a 1,2 kg. Seu ciclo de crescimento varia entre 80 e 90 dias a partir da semeadura."@pt-br ;
+    conto:hasSpecies conto:e_Couve ;
+    conto:providesProduct conto:prod_Cabeca_Piracicaba, conto:prod_Folha_Piracicaba ;
+    conto:hasTrait conto:flower_color_VerdeEscuro, conto:diameter_Piracicaba,
+                    conto:height_Piracicaba ;
+    conto:hasPreference conto:pref_Temp_Couve, conto:pref_pH_Alface, conto:LP_FullSun, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Piracicaba .
+
+# Produtos
+conto:prod_Cabeca_Piracicaba a conto:p_Brocolis ;
+    conto:hasHarvest conto:harvest_Piracicaba .
+
+conto:harvest_Piracicaba a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_80d .
+
+conto:prod_Folha_Piracicaba a conto:p_FolhaBrocolis .
+
+# Preferências
+conto:pref_Temp_Couve a conto:TemperaturePreference ;
+    qudt:hasQuantity conto:q_Temp_20a30C .
+
+# Manejo de plantio
+conto:mgmt_Planting_Piracicaba a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_80cm ;
+    conto:plantSpacing conto:q_Spacing_40cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Couve ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanFev_AgoDez_R2,
+                           conto:season_JanFev_OutDez_R3 .
+
+conto:method_DirectSeeding_Couve a conto:DirectSeeding ;
+    conto:timeToGerminate conto:q_GermTime_5a10d .
+	
+# ========================================
+# CULTIVAR 32: Manteiga da Georgia (Couve)
+# ========================================
+
+conto:cv_Manteiga_da_Georgia a conto:Cultivar ;
+    skos:prefLabel "Manteiga da Georgia"@pt-br ;
+    rdfs:comment "Variedade com folhas largas, lisas e verde escuras. Planta de fácil cultivo e tolerante a variações climáticas. Produz folhas grandes, tenras e macias com nervuras salientes. Rica em fibras, vitaminas e minerais."@pt-br ;
+    conto:hasSpecies conto:e_Couve ;
+    conto:providesProduct conto:prod_Folhas_Manteiga ;
+    conto:hasTrait conto:leaf_color_Verde, conto:height_Manteiga ;
+    conto:hasPreference conto:pref_Temp_Couve, conto:pref_pH_Alface, conto:LP_FullSun, conto:WP_Moderate, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Manteiga .
+
+# Produtos
+conto:prod_Folhas_Manteiga a conto:p_Couve ;
+    conto:hasHarvest conto:harvest_Manteiga .
+
+conto:harvest_Manteiga a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_70d ;
+    conto:timeToHarvest_Winter conto:q_Tempo_90d .
+
+# Manejo de plantio
+conto:mgmt_Planting_Manteiga a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_100cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Couve ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_AnoTodo_R2,
+                           conto:season_AnoTodo_R3 .
+						   
+# ========================================
+# CULTIVAR 33: Solar (Repolho)
+# ========================================
+
+conto:cv_Solar a conto:Cultivar ;
+    skos:prefLabel "Solar"@pt-br ;
+    rdfs:comment "Variedade tradicional de formato redondo para cultivo de verão. De cabeça compacta e verde. Melhor adaptação em temperaturas quentes e amenas. Boa tolerância a Xanthomonas."@pt-br ;
+    conto:hasSpecies conto:e_Couve ;
+    conto:providesProduct conto:prod_Cabeca_Solar ;
+    conto:hasTrait conto:leaf_color_Verde, conto:diameter_Solar,
+                    conto:height_Solar ;
+    conto:hasPreference conto:pref_Temp_Couve, conto:LP_FullSun, conto:WP_High, conto:SDP_WellDrainedSoil ;
+    conto:hasManagement conto:mgmt_Planting_Solar .
+
+# Produtos
+conto:prod_Cabeca_Solar a conto:p_Repolho ;
+    conto:hasHarvest conto:harvest_Solar .
+
+conto:harvest_Solar a conto:AnnualCropHarvest ;
+    conto:timeToHarvest_Summer conto:q_Tempo_110d .
+
+# Manejo de plantio
+conto:mgmt_Planting_Solar a conto:PlantingManagement ;
+    conto:rowSpacing conto:q_Spacing_80cm ;
+    conto:plantSpacing conto:q_Spacing_50cm ;
+    conto:hasPlantingMethod conto:method_DirectSeeding_Couve ;
+    conto:hasPlantingSeason conto:season_AnoTodo_R1,
+                           conto:season_JanMar_AgoDez_R2,
+                           conto:season_JanFev_AgoDez_R3 .
+
+# ========================================
+# Características Reutilizáveis
+# ========================================
+
+conto:diameter_GLA a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_20a30cm .
+
+conto:diameter_Moana a to:00008486 ;
+    qudt:hasQuantity conto:q_Diameter_20a35cm .
+	
+conto:diameter_Piracicaba a to:0000858 ;
+    qudt:hasQuantity conto:q_Diameter_12a15cm .
+	
+conto:diameter_Regina a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_25a35cm .
+	
+conto:diameter_Solar a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_20a25cm .
+
+conto:fruit_shape_Cilindrica a to:0002628 ;
+    skos:prefLabel "Cilíndrica"@pt-br .
+	
+conto:fruit_shape_CilindricaAchatada a to:0002628 ;
+    skos:prefLabel "Cilíndrica Achatada"@pt-br .
+
+conto:fruit_shape_CilindricaPescoco a to:0002628 ;
+    skos:prefLabel "Cilíndrica com Pescoço"@pt-br .
+	
+conto:fruit_shape_CilindricoPonta a to:0002628 ;
+    skos:prefLabel "Cilíndrico com Ponta"@pt-br .
+	
+conto:fruit_shape_GlobularAchatada a to:0002628 ;
+    skos:prefLabel "Globular Achatada"@pt-br .
+
+conto:fruit_shape_GlobularAchatadaGomos a to:0002628 ;
+    skos:prefLabel "Globular Achatada com Gomos"@pt-br .
+
+conto:fruit_shape_Oblongo a to:0002628 ;
+    skos:prefLabel "Oblongo"@pt-br .
+	
+conto:fruit_shape_OblongoGomos a to:0002628 ;
+    skos:prefLabel "Oblongo com Gomos"@pt-br .
+	
+conto:fruit_shape_Redondo a to:0002628 ;
+    skos:prefLabel "Redondo"@pt-br .
+	
+conto:fruit_shape_RedondoAchatado a to:0002628 ;
+    skos:prefLabel "Redondo Achatado"@pt-br .
+
+conto:fruit_length_Alderman a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_10a12cm .
+
+conto:fruit_length_Aodai a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_18a22cm .
+
+conto:fruit_length_Caserta a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_18a20cm .
+	
+conto:fruit_length_Confeito a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_14a22cm .
+	
+conto:fruit_length_Iracema a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_1_5a2cm .
+
+conto:fruit_length_Jaiba a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_5a7cm .
+
+conto:fruit_length_Menina_Brasileira a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_15a25cm .
+	
+conto:fruit_length_Poliniza a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_10a15cm .
+
+conto:fruit_length_Relva a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_10a14cm .
+	
+conto:fruit_length_Rita a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_18a22cm .
+
+conto:fruit_length_Santa_Cruz_47 a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_10a18cm .
+
+conto:fruit_length_Tortuga a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_6a8cm .
+	
+conto:fruit_diameter_Aodai a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_3a5cm .
+	
+conto:fruit_diameter_Caserta a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_4a5cm .
+	
+conto:fruit_diameter_Iracema a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_1a1_5cm .
+	
+conto:fruit_diameter_Kaicara a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_6_5cm .
+
+conto:fruit_diameter_Menina_Brasileira a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_4a6cm .
+	
+conto:fruit_diameter_Poliniza a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_20a30cm .
+	
+conto:fruit_diameter_Rita a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_6a8cm .
+	
+conto:fruit_diameter_Santa_Cruz_47 a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_1_5cm .
+	
+conto:fruit_diameter_Tortuga a to:0000848 ;
+    qudt:hasQuantity conto:q_Diameter_8a15cm .
+
+conto:exocarp_color_Amarelo a to:0002620 ;
+    skos:prefLabel "Amarelo"@pt-br .
+
+conto:exocarp_color_Laranja a to:0002620 ;
+    skos:prefLabel "Laranja"@pt-br .
+	
+conto:exocarp_color_RoxoEscuro a to:0002620 ;
+    skos:prefLabel "Roxo Escuro"@pt-br .
+
+conto:exocarp_color_Verde a to:0002620 ;
+    skos:prefLabel "Verde"@pt-br .
+
+conto:exocarp_color_VerdeClaro a to:0002620 ;
+    skos:prefLabel "Verde Claro"@pt-br .
+	
+conto:exocarp_color_VerdeClaroRajado a to:0002620 ;
+    skos:prefLabel "Verde Claro e Rajado"@pt-br .
+	
+conto:exocarp_color_VerdeEscuro a to:0002620 ;
+    skos:prefLabel "Verde Escuro"@pt-br .
+	
+conto:exocarp_color_VerdeEscuroVerdeClaro a to:0002620 ;
+    skos:prefLabel "Verde Escuro e Verde Claro"@pt-br .
+	
+conto:exocarp_color_VerdeRajado a to:0002620 ;
+    skos:prefLabel "Verde Rajado"@pt-br .
+	
+conto:exocarp_color_VerdeVermelho a to:0002620 ;
+    skos:prefLabel "Verde Para Vermelho"@pt-br .
+	
+conto:exocarp_color_Vermelho a to:0002620 ;
+    skos:prefLabel "Vermelho"@pt-br .
+	
+conto:mesocarp_color_Amarelo a to:0002619 ;
+    skos:prefLabel "Amarelo"@pt-br .
+
+conto:mesocarp_color_Branco a to:0002619 ;
+    skos:prefLabel "Branco"@pt-br .
+	
+conto:mesocarp_color_Creme a to:0002619 ;
+    skos:prefLabel "Creme"@pt-br .
+
+conto:mesocarp_color_Laranja a to:0002619 ;
+    skos:prefLabel "Laranja"@pt-br .
+
+conto:mesocarp_color_Verde a to:0002619 ;
+    skos:prefLabel "Verde"@pt-br .	
+
+conto:mesocarp_color_VerdeClaro a to:0002619 ;
+    skos:prefLabel "Verde Claro"@pt-br .
+	
+conto:mesocarp_color_VerdeVermelho a to:0002619 ;
+    skos:prefLabel "Verde Para Vermelho"@pt-br .
+
+conto:mesocarp_color_Vermelho a to:0002619 ;
+    skos:prefLabel "Vermelho"@pt-br .
+
+conto:root_shape_Cilindrico a to:0002710 ;
+    skos:prefLabel "Cilíndrico"@pt-br .
+
+conto:root_shape_CilindricaPonta a to:0002710 ;
+    skos:prefLabel "Cilíndrica com Ponta"@pt-br .
+
+conto:root_shape_RedondaAchatada a to:0002710 ;
+    skos:prefLabel "Redonda Achatada"@pt-br .
+
+conto:root_shape_RetaLisa a to:0002710 ;
+    skos:prefLabel "Reta e Lisa"@pt-br .
+
+conto:root_color_Branco a to:0000065 ;
+    skos:prefLabel "Branco"@pt-br .
+
+conto:root_color_LaranjaIntenso a to:0000065 ;
+    skos:prefLabel "Laranja Intenso"@pt-br .
+	
+conto:root_color_Laranja a to:0000065 ;
+    skos:prefLabel "Laranja"@pt-br .
+	
+conto:root_color_RoxoEscuro a to:0000065 ;
+    skos:prefLabel "Roxo Escuro"@pt-br .
+
+conto:root_thickness_BRS_Paranoa a to:0000306 ;
+    qudt:hasQuantity conto:q_Diameter_3cm .
+	
+conto:root_thickness_Itapua_202 a to:0000306 ;
+    qudt:hasQuantity conto:q_Diameter_6a8cm .
+	
+conto:root_thickness_Minowase a to:0000306 ;
+    qudt:hasQuantity conto:q_Diameter_3_5a5cm .
+
+conto:root_thickness_Saxa a to:0000306 ;
+    qudt:hasQuantity conto:q_Diameter_2a4cm .
+
+conto:root_thickness_Suprema a to:0000306 ;
+    qudt:hasQuantity conto:q_Diameter_4cm .
+
+conto:root_length_Brasilia a to:0000227 ;
+    qudt:hasQuantity conto:q_Length_18a22cm .
+
+conto:root_length_BRS_Paranoa a to:0000227 ;
+    qudt:hasQuantity conto:q_Length_18a20cm .
+
+conto:root_length_Itapua_202 a to:0000227 ;
+    qudt:hasQuantity conto:q_Length_40a50cm .
+
+conto:root_length_Minowase a to:0000227 ;
+    qudt:hasQuantity conto:q_Length_10a20cm .
+	
+conto:root_length_Suprema a to:0000227 ;
+    qudt:hasQuantity conto:q_Length_21cm .
+
+conto:leaf_color_Verde a to:0000326 ;
+    skos:prefLabel "Verde"@pt-br .
+	
+conto:leaf_color_VerdeClaro a to:0000326 ;
+    skos:prefLabel "Verde Claro"@pt-br .
+	
+conto:leaf_color_VerdeEscuro a to:0000326 ;
+    skos:prefLabel "Verde Escuro"@pt-br .
+
+conto:flower_color_Amarelo a to:0000537 ;
+    skos:prefLabel "Amarelo"@pt-br .
+
+conto:flower_color_Branco a to:0000537 ;
+    skos:prefLabel "Branco"@pt-br .
+	
+conto:flower_color_Roxo a to:0000537 ;
+    skos:prefLabel "Roxo"@pt-br .
+	
+conto:flower_color_VerdeEscuro a to:0000537 ;
+    skos:prefLabel "Verde Escuro"@pt-br .
+
+conto:height_Manteiga a to:0000227 ;
+    qudt:hasQuantity conto:q_Length_60a90cm .
+
+conto:height_Piracicaba a to:0000207 ;
+    qudt:hasQuantity conto:q_Length_60a70cm .
+	
+conto:height_Solar a to:0002626 ;
+    qudt:hasQuantity conto:q_Length_15a20cm .
+
+# ========================================
+# Quantidades Reutilizáveis
+# ========================================
+
+# Diâmetro
+
+conto:q_Diameter_1a1_5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_1a1_5cm .
+
+conto:qval_1a1_5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 1 ;
+    qudt:maxInclusive 1.5 .
+
+conto:q_Diameter_1_5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_1_5cm .
+
+conto:qval_1_5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 1.5 .
+
+conto:q_Diameter_2a4cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_2a4cm .
+
+conto:qval_2a4cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 2 ;
+    qudt:maxInclusive 4 .
+
+conto:q_Diameter_3cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_3cm .
+
+conto:qval_3cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 3 .
+	
+conto:q_Diameter_3a5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_3a5cm .
+
+conto:qval_3a5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 3 ;
+    qudt:maxInclusive 5 .
+
+conto:q_Diameter_3_5a5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_3_5a5cm .
+
+conto:qval_3_5a5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 3.5 ;
+    qudt:maxInclusive 5 .
+	
+conto:q_Diameter_4cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_4cm .
+
+conto:qval_4cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 4 .
+	
+conto:q_Diameter_4a5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_4a5cm .
+
+conto:qval_4a5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 5 .
+	
+conto:q_Diameter_4a6cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_4a6cm .
+
+conto:qval_4a6cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 6 .
+	
+conto:q_Diameter_6a8cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_6a8cm .
+
+conto:qval_6a8cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 6 ;
+    qudt:maxInclusive 8 .
+	
+conto:q_Diameter_6_5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_6_5cm .
+
+conto:qval_6_5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 6.5 .
+	
+conto:q_Diameter_8a15cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_8a15cm .
+
+conto:qval_8a15cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 8 ;
+    qudt:maxInclusive 15 .
+	
+conto:q_Diameter_12a15cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_12a15cm .
+
+conto:qval_12a15cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 12 ;
+    qudt:maxInclusive 15 .
+	
+conto:q_Diameter_20a25cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_20a25cm .
+
+conto:qval_20a25cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 20 ;
+    qudt:maxInclusive 25 .
+	
+conto:q_Diameter_20a30cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_20a30cm .
+
+conto:qval_20a30cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 20 ;
+    qudt:maxInclusive 30 .
+	
+conto:q_Diameter_20a35cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_20a35cm .
+
+conto:qval_20a35cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 20 ;
+    qudt:maxInclusive 35 .
+	
+conto:q_Diameter_25a35cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Diameter ;
+    qudt:quantityValue conto:qval_25a35cm .
+
+conto:qval_25a35cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 25 ;
+    qudt:maxInclusive 35 .
+
+# Comprimento
+
+conto:q_Length_1_5a2cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_1_5a2cm .
+
+conto:qval_1_5a2cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 1.5 ;
+    qudt:maxInclusive 2 .
+
+conto:q_Length_5a7cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_5a7cm .
+
+conto:qval_5a7cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 5 ;
+    qudt:maxInclusive 7 .
+
+conto:q_Length_6a8cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_6a8cm .
+
+conto:qval_6a8cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 6 ;
+    qudt:maxInclusive 8 .
+	
+conto:q_Length_8a15cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_8a15cm .
+
+conto:qval_8a15cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 8 ;
+    qudt:maxInclusive 15 .
+
+conto:q_Length_10a12cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10a12cm .
+
+conto:qval_10a12cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 12 .
+
+conto:q_Length_10a14cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10a14cm .
+
+conto:qval_10a14cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 14 .
+
+conto:q_Length_10a15cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10a15cm .
+
+conto:qval_10a15cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 15 .
+	
+conto:q_Length_10a18cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10a18cm .
+
+conto:qval_10a18cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 18 .
+
+conto:q_Length_10a20cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10a20cm .
+
+conto:qval_10a20cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 20 .
+	
+conto:q_Length_14a18cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_14a18cm .
+
+conto:qval_14a18cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 14 ;
+    qudt:maxInclusive 18 .
+	
+conto:q_Length_14a22cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_14a22cm .
+
+conto:qval_14a22cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 14 ;
+    qudt:maxInclusive 22 .
+	
+conto:q_Length_15a20cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_15a20cm .
+
+conto:qval_15a20cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 15 ;
+		qudt:maxInclusive 20 .
+
+conto:q_Length_15a25cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_15a25cm .
+
+conto:qval_15a25cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 15 ;
+    qudt:maxInclusive 25 .
+
+conto:q_Length_18a20cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_18a20cm .
+
+conto:qval_18a20cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 18 ;
+    qudt:maxInclusive 20 .
+	
+conto:q_Length_18a22cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_18a22cm .
+
+conto:qval_18a22cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 18 ;
+    qudt:maxInclusive 22 .
+	
+conto:q_Length_21cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_21cm .
+
+conto:qval_21cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 21 .
+	
+conto:q_Length_40a50cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_40a50cm .
+
+conto:qval_40a50cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 40 ;
+    qudt:maxInclusive 50 .
+	
+conto:q_Length_60a70cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_60a70cm .
+
+conto:qval_60a70cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 60 ;
+    qudt:maxInclusive 70 .
+	
+conto:q_Length_60a90cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_60a90cm .
+
+conto:qval_60a90cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 60 ;
+    qudt:maxInclusive 90 .
+
+# Espaçamentos
+
+conto:q_RowSpacing_20cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_20cm .
+
+conto:qval_20cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 20 .
+	
+conto:q_RowSpacing_30cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_30cm .
+
+conto:qval_30cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 30 .
+	
+conto:q_Spacing_3cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_3cm .
+
+conto:qval_3cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 3 .
+	
+conto:q_Spacing_10cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10cm .
+
+conto:qval_10cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 10 .
+	
+conto:q_Spacing_20cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_20cm .
+
+conto:qval_20cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 20 .
+	
+conto:q_Spacing_25cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_25cm .
+
+conto:qval_25cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 25 .
+	
+conto:q_Spacing_30cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_30cm .
+
+conto:qval_30cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 30 .
+	
+conto:q_Spacing_40cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_40cm .
+
+conto:qval_40cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 40 .
+	
+conto:q_Spacing_50cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_50cm .
+
+conto:qval_50cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 50 .
+	
+conto:q_Spacing_60cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_60cm .
+
+conto:qval_60cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 60 .
+	
+conto:q_Spacing_80cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_80cm .
+
+conto:qval_80cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 80 .
+	
+conto:q_Spacing_100cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_100cm .
+
+conto:qval_100cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 100 .
+	
+conto:q_Spacing_120cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_120cm .
+
+conto:qval_120cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 120 .
+	
+conto:q_Spacing_150cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_150cm .
+
+conto:qval_150cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 150 .
+
+conto:q_Spacing_200cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_200cm .
+
+conto:qval_200cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 200 .
+	
+conto:q_Spacing_300cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_300cm .
+
+conto:qval_300cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 300 .
+	
+conto:q_Spacing_400cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_400cm .
+
+conto:qval_400cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 400 .
+
+conto:q_PlantSpacing_5cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_5cm .
+
+conto:qval_5cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 5 .
+	
+conto:q_PlantSpacing_10cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_10cm .
+
+conto:qval_10cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:numericValue 10 .
+
+# Depth
+
+conto:q_Depth_1a2cm a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:quantityValue conto:qval_Depth_1a2cm .
+
+conto:qval_Depth_1a2cm a qudt:QuantityValue ;
+    qudt:hasUnit unit:CentiM ;
+    qudt:minInclusive 1 ;
+    qudt:maxInclusive 2 .
+
+# pH
+
+conto:q_pH_5_5a6_5 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_5_5a6_5 .
+
+conto:qval_pH_5_5a6_5 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 5.5 ;
+    qudt:maxInclusive 6.5 .
+	
+conto:q_pH_5_5a6_8 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_5_5a6_8 .
+
+conto:qval_pH_5_5a6_8 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 5.5 ;
+    qudt:maxInclusive 6.8 .
+
+conto:q_pH_5_7a6_5 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_5_7a6_5 .
+
+conto:qval_pH_5_7a6_5 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 5.7 ;
+    qudt:maxInclusive 6.5 .
+	
+conto:q_pH_5_7a6_8 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_5_7a6_8 .
+
+conto:qval_pH_5_7a6_8 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 5.7 ;
+    qudt:maxInclusive 6.8 .
+	
+conto:q_pH_5_8a7_0 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_5_8a7_0 .
+
+conto:qval_pH_5_8a7_0 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 5.8 ;
+    qudt:maxInclusive 7.0 .
+	
+conto:q_pH_5_9a6_8 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_5_9a6_8 .
+
+conto:qval_pH_5_9a6_8 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 5.9 ;
+    qudt:maxInclusive 6.8 .
+	
+conto:q_pH_6a6_5 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_6a6_5 .
+
+conto:qval_pH_6a6_5 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 6 ;
+    qudt:maxInclusive 6.5 .
+	
+conto:q_pH_6_0a6_8 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_6_0a6_8 .
+
+conto:qval_pH_6_0a6_8 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 6.0 ;
+    qudt:maxInclusive 6.8 .
+	
+conto:q_pH_6a7 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Acidity ;
+    qudt:quantityValue conto:qval_pH_6a7 .
+	
+conto:qval_pH_6a7 a qudt:QuantityValue ;
+    qudt:hasUnit unit:PH ;
+    qudt:minInclusive 6 ;
+    qudt:maxInclusive 7 .
+	
+
+# Temperaturas 
+
+conto:q_Temp_10a25C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_10a25C .
+
+conto:qval_10a25C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 25 .
+	
+conto:q_Temp_15a20C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_15a20C .
+
+conto:qval_15a20C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 15 ;
+    qudt:maxInclusive 20 .
+	
+conto:q_Temp_15a25C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_15a25C .
+
+conto:qval_15a25C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 15 ;
+    qudt:maxInclusive 25 .
+	
+conto:q_Temp_15a30C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_15a30C .
+
+conto:qval_15a30C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 15 ;
+    qudt:maxInclusive 30 .
+
+conto:q_Temp_20a30C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_20a30C .
+
+conto:qval_20a30C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 20 ;
+    qudt:maxInclusive 30 .
+	
+conto:q_Temp_20a35C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_20a35C .
+
+conto:qval_20a35C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 20 ;
+    qudt:maxInclusive 35 .
+	
+conto:q_Temp_25a30C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_25a30C .
+
+conto:qval_25a30C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 25 ;
+    qudt:maxInclusive 30 .
+	
+conto:q_Temp_25a35C a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:quantityValue conto:qval_25a35C .
+
+conto:qval_25a35C a qudt:QuantityValue ;
+    qudt:hasUnit unit:DEG_C ;
+    qudt:minInclusive 25 ;
+    qudt:maxInclusive 35 .
+
+# Tempo 
+
+conto:q_Tempo_25d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_25d .
+
+conto:qval_25d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 25 .
+
+conto:q_Tempo_35d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_35d .
+
+conto:qval_35d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 35 .
+	
+conto:q_Tempo_40d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_40d .
+
+conto:qval_40d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 40 .
+	
+conto:q_Tempo_45d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_45d .
+
+conto:qval_45d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 45 .
+	
+conto:q_Tempo_45a60d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_45a60d .
+
+conto:qval_45a60d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 45 ;
+    qudt:maxInclusive 60 .
+	
+conto:q_Tempo_55d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_55d .
+
+conto:qval_55d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 55 .
+
+conto:q_Tempo_60d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_60d .
+
+conto:qval_60d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 60 .
+	
+conto:q_Tempo_65d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_65d .
+
+conto:qval_65d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 65 .
+	
+conto:q_Tempo_70d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_70d .
+
+conto:qval_70d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 70 .
+
+conto:q_Tempo_75d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_75d .
+
+conto:qval_75d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 75 .
+	
+conto:q_Tempo_80d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_80d .
+
+conto:qval_80d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 80 .
+	
+conto:q_Tempo_85d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_85d .
+
+conto:qval_85d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 85 .
+
+conto:q_Tempo_90d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_90d .
+
+conto:qval_90d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 90 .
+	
+conto:q_Tempo_90a100d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_90a100d .
+
+conto:qval_90a100d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 90 ;
+    qudt:maxInclusive 100 .
+	
+conto:q_Tempo_100d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_100d .
+
+conto:qval_100d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 100 .
+	
+conto:q_Tempo_110d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_110d .
+
+conto:qval_110d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 110 .
+	
+conto:q_Tempo_120d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_120d .
+
+conto:qval_120d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:numericValue 120 .
+	
+# Tempo de germinação
+
+conto:q_GermTime_4a7d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_4a7d .
+
+conto:qval_4a7d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 7 .
+
+conto:q_GermTime_4a8d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_4a8d .
+
+conto:qval_4a8d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 8 .
+
+conto:q_GermTime_4a10d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_4a10d .
+
+conto:qval_4a10d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 10 .
+
+conto:q_GermTime_4a14d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_4a14d .
+
+conto:qval_4a14d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 14 .
+	
+conto:q_GermTime_4a21d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_4a21d .
+
+conto:qval_4a21d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 4 ;
+    qudt:maxInclusive 21 .
+	
+conto:q_GermTime_5a8d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_5a8d .
+
+conto:qval_5a8d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 5 ;
+    qudt:maxInclusive 8 .
+	
+conto:q_GermTime_5a10d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_5a10d .
+
+conto:qval_5a10d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 5 ;
+    qudt:maxInclusive 10 .
+	
+conto:q_GermTime_5a14d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_5a14d .
+
+conto:qval_5a14d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 5 ;
+    qudt:maxInclusive 14 .
+
+conto:q_GermTime_7a14d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_7a14d .
+
+conto:qval_7a14d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 7 ;
+    qudt:maxInclusive 14 .
+	
+conto:q_GermTime_7a21d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_7a21d .
+
+conto:qval_7a21d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 7 ;
+    qudt:maxInclusive 21 .
+	
+conto:q_GermTime_10a28d a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Time ;
+    qudt:quantityValue conto:qval_10a28d .
+
+conto:qval_10a28d a qudt:QuantityValue ;
+    qudt:hasUnit unit:DAY ;
+    qudt:minInclusive 10 ;
+    qudt:maxInclusive 28 .
+	
+#-------- Medidas de Massa por Área --------
+
+conto:quantity_MassPerArea_5kgm2 a qudt:Quantity ;
+	qudt:hasQuantityKind quantitykind:MassPerArea ;
+	qudt:quantityValue conto:qval_5kgm2 .
+	
+conto:quantity_MassPerArea_1_5kgm2 a qudt:Quantity ;
+	qudt:hasQuantityKind quantitykind:MassPerArea ;
+	qudt:quantityValue conto:qval_1_5kgm2 .
+	
+conto:quantity_MassPerArea_3kgm2 a qudt:Quantity ;
+	qudt:hasQuantityKind quantitykind:MassPerArea ;
+	qudt:quantityValue conto:qval_3kgm2 .
+
+#-- Medidas em Kilogramas/Metro quadrado ---
+
+conto:qval_1_5kgm2 a qudt:QuantityValue ;
+	qudt:hasUnit unit:KiloGM-PER-M2 ;
+	qudt:numericValue 1.5 .
+
+conto:qval_3kgm2 a qudt:QuantityValue ;
+	qudt:hasUnit unit:KiloGM-PER-M2 ;
+	qudt:numericValue 3 .
+	
+conto:qval_5kgm2 a qudt:QuantityValue ;
+	qudt:hasUnit unit:KiloGM-PER-M2 ;
+	qudt:numericValue 5 .	
+
+# =======================================
+# Lugares
+# ========================================
+	
+# Estados do Brasil
+
+conto:place_estado_Acre a dul:Place ;
+    rdfs:label "Acre" ;
+	skos:altLabel "AC" ;
+    dc:description "Estado do Acre"@pt-br .
+
+conto:place_estado_Alagoas a dul:Place ;
+    rdfs:label "Alagoas" ;
+	skos:altLabel "AL" ;
+    dc:description "Estado de Alagoas"@pt-br .
+
+conto:place_estado_Amapa a dul:Place ;
+    rdfs:label "Amapá" ;
+	skos:altLabel "AP" ;
+    dc:description "Estado do Amapá"@pt-br .
+
+conto:place_estado_Amazonas a dul:Place ;
+    rdfs:label "Amazonas" ;
+	skos:altLabel "AM" ;
+    dc:description "Estado do Amazonas"@pt-br .
+
+conto:place_estado_Bahia a dul:Place ;
+    rdfs:label "Bahia" ;
+	skos:altLabel "BA" ;
+    dc:description "Estado da Bahia"@pt-br .
+
+conto:place_estado_Ceara a dul:Place ;
+    rdfs:label "Ceará" ;
+	skos:altLabel "CE" ;
+    dc:description "Estado do Ceará"@pt-br .
+
+conto:place_estado_Distrito_Federal a dul:Place ;
+    rdfs:label "Distrito Federal" ;
+	skos:altLabel "DF" ;
+    dc:description "Distrito Federal"@pt-br .
+
+conto:place_estado_Espirito_Santo a dul:Place ;
+    rdfs:label "Espírito Santo" ;
+	skos:altLabel "ES" ;
+    dc:description "Estado do Espírito Santo"@pt-br .
+
+conto:place_estado_Goias a dul:Place ;
+    rdfs:label "Goiás" ;
+	skos:altLabel "GO" ;
+    dc:description "Estado de Goiás"@pt-br .
+
+conto:place_estado_Maranhao a dul:Place ;
+    rdfs:label "Maranhão" ;
+	skos:altLabel "MA" ;
+    dc:description "Estado do Maranhão"@pt-br .
+
+conto:place_estado_Mato_Grosso a dul:Place ;
+    rdfs:label "Mato Grosso" ;
+	skos:altLabel "MT" ;
+    dc:description "Estado de Mato Grosso"@pt-br .
+
+conto:place_estado_Mato_Grosso_do_Sul a dul:Place ;
+    rdfs:label "Mato Grosso do Sul" ;
+	skos:altLabel "MS" ;
+    dc:description "Estado de Mato Grosso do Sul"@pt-br .
+
+conto:place_estado_Minas_Gerais a dul:Place ;
+    rdfs:label "Minas Gerais" ;
+	skos:altLabel "MG" ;
+    dc:description "Estado de Minas Gerais"@pt-br .
+
+conto:place_estado_Para a dul:Place ;
+    rdfs:label "Pará" ;
+	skos:altLabel "PA" ;
+    dc:description "Estado do Pará"@pt-br .
+
+conto:place_estado_Paraiba a dul:Place ;
+    rdfs:label "Paraíba" ;
+	skos:altLabel "PB" ;
+    dc:description "Estado da Paraíba"@pt-br .
+
+conto:place_estado_Parana a dul:Place ;
+    rdfs:label "Paraná" ;
+	skos:altLabel "PR" ;
+    dc:description "Estado do Paraná"@pt-br .
+
+conto:place_estado_Pernambuco a dul:Place ;
+    rdfs:label "Pernambuco" ;
+	skos:altLabel "PE" ;
+    dc:description "Estado de Pernambuco"@pt-br .
+
+conto:place_estado_Piaui a dul:Place ;
+    rdfs:label "Piauí" ;
+	skos:altLabel "PI" ;
+    dc:description "Estado do Piauí"@pt-br .
+
+conto:place_estado_Rio_de_Janeiro a dul:Place ;
+    rdfs:label "Rio de Janeiro" ;
+	skos:altLabel "RJ" ;
+    dc:description "Estado do Rio de Janeiro"@pt-br .
+
+conto:place_estado_Rio_Grande_do_Norte a dul:Place ;
+    rdfs:label "Rio Grande do Norte" ;
+	skos:altLabel "RN" ;
+    dc:description "Estado do Rio Grande do Norte"@pt-br .
+
+conto:place_estado_Rio_Grande_do_Sul a dul:Place ;
+    rdfs:label "Rio Grande do Sul" ;
+	skos:altLabel "RS" ;
+    dc:description "Estado do Rio Grande do Sul"@pt-br .
+
+conto:place_estado_Rondonia a dul:Place ;
+    rdfs:label "Rondônia" ;
+	skos:altLabel "RO" ;
+    dc:description "Estado de Rondônia"@pt-br .
+
+conto:place_estado_Roraima a dul:Place ;
+    rdfs:label "Roraima" ;
+	skos:altLabel "RR" ;
+    dc:description "Estado de Roraima"@pt-br .
+
+conto:place_estado_Santa_Catarina a dul:Place ;
+    rdfs:label "Santa Catarina" ;
+	skos:altLabel "SC" ;
+    dc:description "Estado de Santa Catarina"@pt-br .
+
+conto:place_estado_Sao_Paulo a dul:Place ;
+    rdfs:label "São Paulo" ;
+	skos:altLabel "SP" ;
+    dc:description "Estado de São Paulo"@pt-br .
+
+conto:place_estado_Sergipe a dul:Place ;
+    rdfs:label "Sergipe" ;
+	skos:altLabel "SE" ;
+    dc:description "Estado de Sergipe"@pt-br .
+
+conto:place_estado_Tocantins a dul:Place ;
+    rdfs:label "Tocantins" ;
+	skos:altLabel "TO" ;
+    dc:description "Estado do Tocantins"@pt-br .
+
+# Regiões geográficas usadas
+
+conto:place_Regiao1 a dul:Place ;
+	dul:hasPart conto:place_estado_Acre ;
+	dul:hasPart conto:place_estado_Amazonas ;
+	dul:hasPart conto:place_estado_Roraima ;
+	dul:hasPart conto:place_estado_Rondonia ;
+	dul:hasPart conto:place_estado_Para ;
+	dul:hasPart conto:place_estado_Amapa ;
+	dul:hasPart conto:place_estado_Mato_Grosso ;
+	dul:hasPart conto:place_estado_Mato_Grosso_do_Sul ;
+	dul:hasPart conto:place_estado_Goias ;
+	dul:hasPart conto:place_estado_Distrito_Federal ;
+	dul:hasPart conto:place_estado_Tocantins ;
+	dul:hasPart conto:place_estado_Maranhao ;
+	dul:hasPart conto:place_estado_Piaui ;
+	dul:hasPart conto:place_estado_Ceara ;
+	dul:hasPart conto:place_estado_Rio_Grande_do_Norte ;
+	dul:hasPart conto:place_estado_Pernambuco ;
+	dul:hasPart conto:place_estado_Paraiba ;
+	dul:hasPart conto:place_estado_Alagoas ;
+	dul:hasPart conto:place_estado_Sergipe ;
+	dul:hasPart conto:place_estado_Bahia ;
+	dul:hasPart conto:place_estado_Espirito_Santo ;
+	dul:hasPart conto:place_estado_Rio_de_Janeiro .
+	
+conto:place_Regiao2 a dul:Place ;
+	dul:hasPart conto:place_estado_Minas_Gerais ;
+	dul:hasPart conto:place_estado_Sao_Paulo .
+
+conto:place_Regiao3 a dul:Place ;
+	dul:hasPart conto:place_estado_Parana ;
+	dul:hasPart conto:place_estado_Santa_Catarina ;
+	dul:hasPart conto:place_estado_Rio_Grande_do_Sul .
+	
+conto:place_RegiaoCentroOeste a dul:Place ;
+	dul:hasPart conto:place_estado_Mato_Grosso ;
+	dul:hasPart conto:place_estado_Mato_Grosso_do_Sul ;
+	dul:hasPart conto:place_estado_Goias ;
+	dul:hasPart conto:place_estado_Distrito_Federal .
+	
+conto:place_RegiaoNordeste a dul:Place ;
+	dul:hasPart conto:place_estado_Maranhao ;
+	dul:hasPart conto:place_estado_Piaui ;
+	dul:hasPart conto:place_estado_Ceara ;
+	dul:hasPart conto:place_estado_Rio_Grande_do_Norte ;
+	dul:hasPart conto:place_estado_Pernambuco ;
+	dul:hasPart conto:place_estado_Paraiba ;
+	dul:hasPart conto:place_estado_Alagoas ;
+	dul:hasPart conto:place_estado_Sergipe ;
+	dul:hasPart conto:place_estado_Bahia .
+
+# ========================================
+# Meses do Ano
+# ========================================
+
+conto:time_Janeiro      a time:Instant ; time:inDateTime greg:January .
+conto:time_Fevereiro    a time:Instant ; time:inDateTime greg:February .
+conto:time_Marco        a time:Instant ; time:inDateTime greg:March .
+conto:time_Abril        a time:Instant ; time:inDateTime greg:April .
+conto:time_Maio         a time:Instant ; time:inDateTime greg:May .
+conto:time_Junho        a time:Instant ; time:inDateTime greg:June .
+conto:time_Julho        a time:Instant ; time:inDateTime greg:July .
+conto:time_Agosto       a time:Instant ; time:inDateTime greg:August .
+conto:time_Setembro     a time:Instant ; time:inDateTime greg:September .
+conto:time_Outubro      a time:Instant ; time:inDateTime greg:October .
+conto:time_Novembro     a time:Instant ; time:inDateTime greg:November .
+conto:time_Dezembro     a time:Instant ; time:inDateTime greg:December .
+
+#-------------------------------------------
+# Adubos
+#-------------------------------------------
+
+conto:adubo_CompostoOrganico a envo:00002170 ;
+	rdfs:label "Composto Orgânico"@pt-br.
+
+conto:adubo_EstercoAves a agro:00000080 ;
+	rdfs:label "Esterco de Frango"@pt-br.
+	
+conto:adubo_EstercoGado a agro:agro:00000077 ;
+	rdfs:label "Esterco de Gado"@pt-br.
